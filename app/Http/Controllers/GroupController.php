@@ -23,7 +23,7 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function CreateNewGroup(CreateNewGroupRequest $request, CreateNewGroupAction $createNewGroupAction): JsonResponse
+    public function CreateNewGroup(CreateNewGroupRequest $request, CreateNewGroupAction $createNewGroupAction)
     {
         // $this->authorize('canCreateNewGroup', Group::class);
         $group = $createNewGroupAction->create(new CreateNewGroupDto(
@@ -33,11 +33,11 @@ class GroupController extends Controller
             groupleaderId: auth()->id(),
         ));
 
-        redirect(RouteServiceProvider::HOME);
+        //Saving group id to user
+        $user = auth()->user();
+        $user->group_id = $group->id;
+        $user->save();
 
-        return response()->json([
-            'message' => 'group created successfully',
-            'data' => new GroupResource($group),
-        ]);
+        return redirect(RouteServiceProvider::HOME);
     }
 }
