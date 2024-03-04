@@ -6,10 +6,9 @@ use App\Actions\Group\CreateNewGroupAction;
 use App\Dto\Group\CreateNewGroupDto;
 use App\Http\Requests\CreateNewGroupRequest;
 use App\Http\Resources\GroupResource;
-use App\Providers\RouteServiceProvider;
 use App\Models\Group;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\JsonResponse;
-
 
 class GroupController extends Controller
 {
@@ -24,7 +23,7 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function CreateNewGroup(CreateNewGroupRequest $request, CreateNewGroupAction $createNewGroupAction):JsonResponse
+    public function CreateNewGroup(CreateNewGroupRequest $request, CreateNewGroupAction $createNewGroupAction): JsonResponse
     {
         // $this->authorize('canCreateNewGroup', Group::class);
         $group = $createNewGroupAction->create(new CreateNewGroupDto(

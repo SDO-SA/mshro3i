@@ -29,12 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 Route::prefix('groups')
     ->middleware(['auth'])
-    ->group(function(){
-        Route::get('/create-group',[GroupController::class, 'create'])->name('creategroup');
-        Route::post('/create-group',[GroupController::class, 'CreateNewGroup']);
+    ->group(function () {
+        Route::get('/create-group', [GroupController::class, 'create'])->name('creategroup');
+        Route::post('/create-group', [GroupController::class, 'CreateNewGroup']);
     });
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,6 @@ namespace App\Actions\Group;
 use App\Dto\Group\CreateNewGroupDto;
 use App\Models\Group;
 
-
 class CreateNewGroupAction
 {
     private Group $group;
@@ -26,6 +25,6 @@ class CreateNewGroupAction
         $this->group->department = $createNewGroupDto->department;
         $this->group->supervisor = $createNewGroupDto->supervisor;
         $this->group->groupleaderId = $createNewGroupDto->groupleaderId;
-        
+
     }
 }

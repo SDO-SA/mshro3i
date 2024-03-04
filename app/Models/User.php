@@ -46,7 +46,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function group(): HasOne
     {
         return $this->hasOne(Group::class);
