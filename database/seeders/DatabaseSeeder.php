@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Base\RolesList;
+use App\States\StudentStates;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,9 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'university_id' => 442003532,
             'department' => 'Computer Science',
-            'type' => RolesList::ROLE_STUDENT,
+            'state' => StudentStates::NotJoined,
             'password' => bcrypt('111'),
         ]);
+        $this->call(RolesAndPermissionsSeeder::class);
         $this->call(DepartmentSeeder::class);
     }
 }

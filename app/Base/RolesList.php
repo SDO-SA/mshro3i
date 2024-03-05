@@ -8,10 +8,6 @@ class RolesList
 
     const ROLE_STUDENT = 'student';
 
-    const ROLE_GROUP_LEADER = 'group_leader';
-
-    const ROLE_GROUP_MEMBER = 'group_member';
-
     const ROLE_SUPERVISOR = 'supervisor';
 
     const ROLE_GPC = 'gpc';
@@ -19,9 +15,29 @@ class RolesList
     const AVAILABLE_ROLES = [
         ['name' => self::ROLE_ADMIN],
         ['name' => self::ROLE_STUDENT],
-        ['name' => self::ROLE_GROUP_LEADER],
-        ['name' => self::ROLE_GROUP_MEMBER],
         ['name' => self::ROLE_SUPERVISOR],
         ['name' => self::ROLE_GPC],
     ];
+
+    const STUDENT_PERMISSIONS = [
+        PermissionsList::STUDENT,
+        PermissionsList::GROUP_LIST,
+        PermissionsList::GROUP_CREATE,
+        PermissionsList::GROUP_SHOW,
+    ];
+
+    const SUPERVISOR_PERMISSIONS = [
+        PermissionsList::SUPERVISOR,
+        PermissionsList::GROUP_LIST,
+        PermissionsList::GROUP_SHOW,
+    ];
+
+    public static function ROLES_PERMISSIONS_MAP()
+    {
+        return [
+            self::ROLE_ADMIN => PermissionsList::ADMIN_PERMISSIONS(),
+            self::ROLE_STUDENT => self::STUDENT_PERMISSIONS,
+            self::ROLE_SUPERVISOR => self::SUPERVISOR_PERMISSIONS,
+        ];
+    }
 }

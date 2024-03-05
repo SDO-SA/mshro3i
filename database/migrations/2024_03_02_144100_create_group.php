@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('groupleaderId');
             $table->json('groupmember_ids')->nullable();
             $table->unsignedBigInteger('supervisor_id')->nullable();
+            $table->foreign('groupleaderId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
