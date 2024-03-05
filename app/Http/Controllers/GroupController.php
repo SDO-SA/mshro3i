@@ -17,6 +17,7 @@ class GroupController extends Controller
     public function create()
     {
         $this->authorize('canCreateNewGroup', Group::class);
+
         return view('groups.groupform');
     }
 
