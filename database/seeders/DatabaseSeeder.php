@@ -14,13 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'university_id' => 23,
-            'department' => 'Computer Science',
-            'password' => bcrypt('111'),
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@example.com',
+        //     'university_id' => 23,
+        //     'department' => 'Computer Science',
+        //     'password' => bcrypt('111'),
+        // ]);
         $this->call(DepartmentSeeder::class);
     }
 }

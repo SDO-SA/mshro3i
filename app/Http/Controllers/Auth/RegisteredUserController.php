@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Base\RolesList;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\User;
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
             'university_id' => $request->university_id,
             'email' => $request->email,
             'department' => $request->department,
+            'type' => RolesList::ROLE_STUDENT,
             'password' => Hash::make($request->password),
         ]);
 

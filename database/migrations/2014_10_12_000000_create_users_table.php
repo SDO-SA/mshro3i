@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('department');
             $table->string('password');
+            $table->string('type');
             $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
