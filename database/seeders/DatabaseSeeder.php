@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
             'department' => 'Computer Science',
             'password' => bcrypt('111'),
         ]);
+        $this->call(DepartmentSeeder::class);
     }
 }

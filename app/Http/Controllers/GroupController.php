@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Actions\Group\CreateNewGroupAction;
 use App\Dto\Group\CreateNewGroupDto;
 use App\Http\Requests\CreateNewGroupRequest;
-use App\Http\Resources\GroupResource;
 use App\Models\Group;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\JsonResponse;
 
 class GroupController extends Controller
 {
