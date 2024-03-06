@@ -29,7 +29,6 @@ class GroupController extends Controller
         $this->authorize('canCreateNewGroup', Group::class);
         $group = $createNewGroupAction->create(new CreateNewGroupDto(
             name: $request->name,
-            supervisor: $request->supervisor,
             department: auth()->user()->department,
             groupleaderId: auth()->id(),
         ));

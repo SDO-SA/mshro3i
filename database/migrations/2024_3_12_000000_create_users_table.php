@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('password');
             $table->unsignedBigInteger('group_id')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
         });
     }
