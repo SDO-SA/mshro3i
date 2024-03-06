@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,9 +18,7 @@ class GroupResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'department' => $this->department,
-            'supervisor' => $this->supervisor,
-            'groupleaderId' => $this->groupleaderId,
+            'department' => Department::find($this->department_id)->department,
         ];
     }
 }

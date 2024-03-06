@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
+use App\States\StudentStates;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,9 +24,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             'name' => fake()->name(),
+            'university_id' => fake()->unique()->randomNumber(5),
             'email' => fake()->unique()->safeEmail(),
+            'department_id' => Department::query()->get()->random()->id,
+            'state' => StudentStates::NotJoined,
             'password' => static::$password ??= Hash::make('password'),
         ];
     }

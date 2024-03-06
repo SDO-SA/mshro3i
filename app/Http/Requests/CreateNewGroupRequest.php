@@ -15,7 +15,6 @@ class CreateNewGroupRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'supervisor' => ['required', 'string', 'max:255'],
         ];
     }
 }

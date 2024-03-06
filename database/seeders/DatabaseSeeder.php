@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            'name' => 'Saud',
-            'email' => 'admin@example.com',
-            'university_id' => 442003532,
-            'department' => 'Computer Science',
-            'state' => StudentStates::NotJoined,
-            'password' => bcrypt('111'),
-        ]);
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(DepartmentSeeder::class);
+        \App\Models\User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Saud',
+        //     'email' => 'admin@example.com',
+        //     'university_id' => 442003532,
+        //     'department' => 'Computer Science',
+        //     'state' => StudentStates::NotJoined,
+        //     'password' => bcrypt('111'),
+        // ]);
     }
 }
