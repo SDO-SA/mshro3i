@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Group\CreateNewGroupAction;
-use App\Base\RolesList;
 use App\Dto\Group\CreateNewGroupDto;
 use App\Http\Requests\CreateNewGroupRequest;
 use App\Models\Group;
 use App\Providers\RouteServiceProvider;
+use App\States\StudentStates;
 
 class GroupController extends Controller
 {
@@ -29,7 +29,6 @@ class GroupController extends Controller
         $this->authorize('canCreateNewGroup', Group::class);
         $group = $createNewGroupAction->create(new CreateNewGroupDto(
             name: $request->name,
-            supervisor: $request->supervisor,
             department: auth()->user()->department,
             groupleaderId: auth()->id(),
         ));
@@ -37,7 +36,7 @@ class GroupController extends Controller
         //Saving group id to user
         $user = auth()->user();
         $user->group_id = $group->id;
-        $user->type = RolesList::ROLE_GROUP_LEADER;
+        $user->state = StudentStates::GroupLeader;
         $user->save();
 
         return redirect(RouteServiceProvider::HOME);

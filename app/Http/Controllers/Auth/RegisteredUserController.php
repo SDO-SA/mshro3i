@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\States\StudentStates;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -47,9 +48,10 @@ class RegisteredUserController extends Controller
             'university_id' => $request->university_id,
             'email' => $request->email,
             'department' => $request->department,
-            'type' => RolesList::ROLE_STUDENT,
+            'state' => StudentStates::NotJoined,
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole(RolesList::ROLE_STUDENT);
 
         event(new Registered($user));
 

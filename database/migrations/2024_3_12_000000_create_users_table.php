@@ -17,11 +17,10 @@ return new class extends Migration
             $table->integer('university_id')->unique();
             $table->string('email')->unique();
             $table->string('department');
+            $table->string('state');
             $table->string('password');
-            $table->string('type');
             $table->unsignedBigInteger('group_id')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
         });
     }

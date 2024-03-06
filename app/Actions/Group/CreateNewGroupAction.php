@@ -23,7 +23,6 @@ class CreateNewGroupAction
     {
         $this->group->name = $createNewGroupDto->name;
         $this->group->department = $createNewGroupDto->department;
-        $this->group->supervisor = $createNewGroupDto->supervisor;
         $this->group->groupleaderId = $createNewGroupDto->groupleaderId;
 
     }
