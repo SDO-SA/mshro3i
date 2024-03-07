@@ -20,7 +20,11 @@ class GroupController extends Controller
 
         return view('groups.groupform');
     }
-
+    public function list()
+    {
+        $groups = Group::all();
+        return view('groups.group-list', compact('groups'));
+    }
     /**
      * Store a newly created resource in storage.
      */
