@@ -10,7 +10,7 @@ class GroupPolicy
 {
     public function canCreateNewGroup(User $user): bool
     {
-        return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;;
+        return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
     }
 
     public function viewCreateGroup(User $user): bool
