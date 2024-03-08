@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(DepartmentSeeder::class);
         User::factory(10)->create();
-        Group::factory(30)->create();
+        Group::factory(100)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Saud',
