@@ -17,4 +17,9 @@ class GroupPolicy
     {
         return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
     }
+
+    public function canShowMyGroup(User $user): bool
+    {
+        return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state !== StudentStates::NotJoined()->value;
+    }
 }

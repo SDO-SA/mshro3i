@@ -28,6 +28,7 @@ class GroupController extends Controller
 
     public function list()
     {
+        $this->authorize('canCreateNewGroup', Group::class);
         $groups = Group::where('department_id', auth()->user()->department_id)->get();
 
         return view('groups.group-list', compact('groups'));
@@ -69,7 +70,7 @@ class GroupController extends Controller
 
     public function show(Request $request)
     {
-        // $this->authorize('canShowMyGroup', Group::class);
+        $this->authorize('canShowMyGroup', Group::class);
         $user = auth()->user();
         $group = Group::find($user->group_id);
 
