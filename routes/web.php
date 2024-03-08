@@ -37,6 +37,7 @@ Route::prefix('groups')
         Route::post('/create-group', [GroupController::class, 'CreateNewGroup']);
         Route::get('/browse-list', [GroupController::class, 'list']);
         Route::get('/my-group', [GroupController::class, 'show'])->name('mygroup');
+        Route::get('/join-group/{groupId}', [GroupController::class, 'join'])->name('joingroup');
     });
 
 Route::prefix('users')

@@ -25,11 +25,14 @@ class GroupController extends Controller
 
         return view('groups.groupform', ['groupMembers' => $groupMembers]);
     }
+
     public function list()
     {
-        $groups = Group::all();
+        $groups = Group::where('department_id', auth()->user()->department_id)->get();
+
         return view('groups.group-list', compact('groups'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -75,5 +78,15 @@ class GroupController extends Controller
             'my_role' => $user->state,
             'my-group' => new GroupResource($group),
         ]);
+    }
+
+    public function join($group_id)
+    {
+        $user = auth()->user();
+        $user->group_id = $group_id;
+        $user->state = StudentStates::GroupMember();
+        $user->save();
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
