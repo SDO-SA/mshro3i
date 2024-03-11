@@ -13,6 +13,8 @@ class Group extends Model
     protected $fillable = [
         'name',
         'department_id',
+        'total_members',
+        'status',
     ];
 
     public function user(): BelongsTo
