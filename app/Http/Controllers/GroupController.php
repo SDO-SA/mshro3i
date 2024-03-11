@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Group;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\States\GroupStatues;
 use App\States\StudentStates;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class GroupController extends Controller
         $userId = auth()->user()->id;
         $groupMembers = User::where('department_id', auth()->user()->department_id)
             ->where('id', '!=', $userId)
+            ->where('state', StudentStates::NotJoined)
             ->pluck('name', 'id');
 
         return view('groups.groupform', ['groupMembers' => $groupMembers]);
@@ -29,7 +31,9 @@ class GroupController extends Controller
     public function list()
     {
         $this->authorize('canCreateNewGroup', Group::class);
-        $groups = Group::where('department_id', auth()->user()->department_id)->get();
+        $groups = Group::where('department_id', auth()->user()->department_id)
+            ->where('total_members', '<', 4)
+            ->get();
 
         return view('groups.group-list', compact('groups'));
     }
@@ -48,21 +52,49 @@ class GroupController extends Controller
         $group = Group::create([
             'name' => $request->name,
             'department_id' => Department::find($user->department_id)->id,
+            'total_members' => 1,
+            'status' => GroupStatues::New,
         ]);
 
         //Saving group id to group leader
-        $user->group_id = $group->id;
-        $user->state = StudentStates::GroupLeader;
-        $user->save();
+        User::where('id', $user->id)
+            ->update([
+                'state' => StudentStates::GroupLeader,
+                'group_id' => $group->id,
+            ]);
 
         $gmbid = $request->groupmembers;
-        foreach ($gmbid as $mid) {
-            $groupMember = User::find($mid);
-            if ($groupMember) {
-                $groupMember->state = StudentStates::GroupMember;
-                $groupMember->group_id = $group->id;
-                $groupMember->save();
-            }
+
+        User::whereIn('id', $gmbid)
+            ->update([
+                'state' => StudentStates::GroupMember,
+                'group_id' => $group->id,
+            ]);
+
+        $group->total_members = $group->total_members + count($gmbid);
+        if ($group->total_members == 4) {
+            $group->status = GroupStatues::Pending;
+        }
+        $group->save();
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function join($group_id)
+    {
+        $user = auth()->user();
+        $group = Group::find($group_id);
+
+        if ($group) {
+            $user->state = StudentStates::GroupMember;
+            $user->group_id = $group->id;
+            $user->save();
+
+            $group->increment('total_members');
+        }
+        if ($group->total_members == 4) {
+            $group->status = GroupStatues::Pending;
+            $group->save();
         }
 
         return redirect(RouteServiceProvider::HOME);
@@ -79,15 +111,5 @@ class GroupController extends Controller
             'my_role' => $user->state,
             'my-group' => new GroupResource($group),
         ]);
-    }
-
-    public function join($group_id)
-    {
-        $user = auth()->user();
-        $user->group_id = $group_id;
-        $user->state = StudentStates::GroupMember();
-        $user->save();
-
-        return redirect(RouteServiceProvider::HOME);
     }
 }

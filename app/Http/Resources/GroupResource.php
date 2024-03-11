@@ -19,6 +19,8 @@ class GroupResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'department' => Department::find($this->department_id)->department,
+            'total_members' => $this->total_members,
+            'status' => $this->status,
         ];
     }
 }

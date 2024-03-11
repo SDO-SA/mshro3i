@@ -20,6 +20,8 @@ class GroupFactory extends Factory
         return [
             'name' => fake()->name(),
             'department_id' => Department::query()->get()->random()->id,
+            'total_members' => random_int(1, 4),
+            'status' => 'new',
         ];
     }
 }
