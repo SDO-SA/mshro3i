@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +19,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'university_id' => $this->university_id,
             'email' => $this->email,
-            'department_id' => $this->department_id,
+            'department' => Department::find($this->department_id)->department,
             'state' => $this->state,
             'type' => $this->type,
         ];

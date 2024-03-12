@@ -6,7 +6,7 @@ namespace App\Models;
 use App\Base\PermissionsList;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,14 +52,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function group(): HasOne
+    public function group(): BelongsTo
     {
-        return $this->hasOne(Group::class);
+        return $this->belongsTo(Group::class);
     }
 
-    public function department(): HasOne
+    public function department(): BelongsTo
     {
-        return $this->hasOne(Department::class);
+        return $this->belongsTo(Department::class);
     }
 
     protected function type(): Attribute
@@ -68,15 +68,15 @@ class User extends Authenticatable
         if ($this->hasPermissionTo(PermissionsList::STUDENT)) {
             $type = PermissionsList::STUDENT;
         }
-        if ($this->hasPermissionTo(PermissionsList::SUPERVISOR)) {
-            $type = PermissionsList::SUPERVISOR;
-        }
-        if ($this->hasPermissionTo(PermissionsList::ADMIN)) {
-            $type = PermissionsList::ADMIN;
-        }
-        if ($this->hasPermissionTo(PermissionsList::GPC)) {
-            $type = PermissionsList::GPC;
-        }
+        // if ($this->hasPermissionTo(PermissionsList::SUPERVISOR)) {
+        //     $type = PermissionsList::SUPERVISOR;
+        // }
+        // if ($this->hasPermissionTo(PermissionsList::ADMIN)) {
+        //     $type = PermissionsList::ADMIN;
+        // }
+        // if ($this->hasPermissionTo(PermissionsList::GPC)) {
+        //     $type = PermissionsList::GPC;
+        // }
 
         return Attribute::make(
             get: fn () => $type
