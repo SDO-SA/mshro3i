@@ -59,6 +59,7 @@ class GroupController extends Controller
             $group = Group::create([
                 'name' => $request->name,
                 'department_id' => Department::find($user->department_id)->id,
+                'group_leader' => $user->name,
                 'total_members' => 1,
                 'status' => GroupStatues::New,
             ]);

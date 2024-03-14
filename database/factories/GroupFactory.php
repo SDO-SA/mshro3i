@@ -43,6 +43,7 @@ class GroupFactory extends Factory
         return [
             'name' => fake()->randomElement($names),
             'department_id' => Department::query()->get()->random()->id,
+            'group_leader' => fake()->randomElement($names),
             'total_members' => random_int(1, 4),
             'status' => 'new',
         ];
