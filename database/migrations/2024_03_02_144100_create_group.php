@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('group_leader');
             $table->unsignedBigInteger('department_id');
             $table->unsignedBigInteger('supervisor_id')->nullable();
             $table->integer('total_members')->nullable();
