@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     
-    @can('viewCreateGroup', App\Models\Group::class)
+    @can('viewGroupButtons', App\Models\Group::class)
         @include('groups.group-index')
     @endcan
     

@@ -17,8 +17,31 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
+        $names = [
+            'Money',
+            'Power',
+            'Food',
+            'Serenity',
+            'Velocity',
+            'Aurora',
+            'Phoenix',
+            'Maverick',
+            'Luna',
+            'Nova',
+            'Raven',
+            'Sapphire',
+            'Blaze',
+            'Jupiter',
+            'Echo',
+            'Orion',
+            'Stella',
+            'Zenith',
+            'Titan',
+            'Harmony',
+        ];
+
         return [
-            'name' => fake()->name(),
+            'name' => fake()->randomElement($names),
             'department_id' => Department::query()->get()->random()->id,
             'total_members' => random_int(1, 4),
             'status' => 'new',

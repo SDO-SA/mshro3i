@@ -13,7 +13,17 @@ class GroupPolicy
         return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
     }
 
-    public function viewCreateGroup(User $user): bool
+    public function canBrowseGroupList(User $user): bool
+    {
+        return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
+    }
+
+    public function canJoinGroup(User $user): bool
+    {
+        return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
+    }
+
+    public function viewGroupButtons(User $user): bool
     {
         return $user->hasRole(RolesList::ROLE_STUDENT) && $user->state === StudentStates::NotJoined()->value;
     }
