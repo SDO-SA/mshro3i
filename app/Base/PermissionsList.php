@@ -24,12 +24,30 @@ class PermissionsList
 
     const GROUP_DELETE = 'group.delete';
 
+    const PROJECT_LIST = 'project.list';
+
+    const PROJECT_SHOW = 'project.show';
+
+    const PROJECT_CREATE = 'project.create';
+
+    const PROJECT_UPDATE = 'project.update';
+
+    const PROJECT_DELETE = 'project.delete';
+
     const GROUP_GROUP = [
         self::GROUP_LIST,
         self::GROUP_SHOW,
         self::GROUP_CREATE,
         self::GROUP_UPDATE,
         self::GROUP_DELETE,
+    ];
+
+    const PROJECT_GROUP = [
+        self::PROJECT_LIST,
+        self::PROJECT_SHOW,
+        self::PROJECT_CREATE,
+        self::PROJECT_UPDATE,
+        self::PROJECT_DELETE,
     ];
 
     public static function ADMIN_PERMISSIONS(): array

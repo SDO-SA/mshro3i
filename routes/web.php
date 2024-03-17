@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/toggle-dark-mode', function () {
-    session()->put('darkMode', !session('darkMode'));
+    session()->put('darkMode', ! session('darkMode'));
+
     return back();
 })->name('toggle-dark-mode');
 
@@ -49,6 +51,13 @@ Route::prefix('users')
     ->middleware(['auth'])
     ->group(function () {
         Route::get('/me', [UserController::class, 'me'])->name('me');
+    });
+
+Route::prefix('project')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/create-project', [ProjectController::class, 'createForm'])->name('createproject');
+        Route::post('/create-project', [ProjectController::class, 'createProject']);
     });
 
 require __DIR__.'/auth.php';
