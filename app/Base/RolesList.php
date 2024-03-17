@@ -24,12 +24,17 @@ class RolesList
         PermissionsList::GROUP_LIST,
         PermissionsList::GROUP_CREATE,
         PermissionsList::GROUP_SHOW,
+        PermissionsList::PROJECT_CREATE,
+        PermissionsList::PROJECT_UPDATE,
+        PermissionsList::PROJECT_SHOW,
     ];
 
     const SUPERVISOR_PERMISSIONS = [
         PermissionsList::SUPERVISOR,
         PermissionsList::GROUP_LIST,
         PermissionsList::GROUP_SHOW,
+        PermissionsList::PROJECT_SHOW,
+        PermissionsList::PROJECT_LIST,
     ];
 
     public static function ROLES_PERMISSIONS_MAP()

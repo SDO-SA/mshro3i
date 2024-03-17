@@ -93,7 +93,7 @@ class GroupController extends Controller
     public function join($group_id)
     {
         $this->authorize('canJoinGroup', Group::class);
-        
+
         $user = auth()->user();
         $group = Group::find($group_id);
         if ($group) {
