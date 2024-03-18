@@ -74,23 +74,25 @@ class GroupController extends Controller
                 ]);
 
             $gmbid = $request->groupmembers;
-            $group->total_members = $group->total_members + count($gmbid);
-            if ($group->total_members >= 4) {
-                $group->status = GroupStatues::Pending;
-            }
-            $group->save();
+            if (! empty($gmbid[0])) {
+                $group->total_members = $group->total_members + count($gmbid);
+                if ($group->total_members >= 4) {
+                    $group->status = GroupStatues::Pending;
+                }
+                $group->save();
 
-            User::whereIn('id', $gmbid)
-                ->update([
-                    'state' => StudentStates::GroupMember,
-                    'group_id' => $group->id,
-                ]);
+                User::whereIn('id', $gmbid)
+                    ->update([
+                        'state' => StudentStates::GroupMember,
+                        'group_id' => $group->id,
+                    ]);
+            }
         });
 
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function join($group_id)
+    public function joinGroup($group_id)
     {
         $this->authorize('canJoinGroup', Group::class);
 
@@ -107,6 +109,51 @@ class GroupController extends Controller
 
             if ($group->total_members == 4) {
                 $group->update(['status' => GroupStatues::Pending]);
+            }
+        }
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function leaveGroup()
+    {
+        $user = auth()->user();
+        $group = Group::find($user->group_id);
+
+        if ($group) {
+            if ($user->state === StudentStates::GroupLeader()->value) {
+                if ($group->total_members === 1) {
+                    $user->group_id = null;
+                    $user->save();
+                    $group->delete();
+                } else {
+                    $newLeader = User::where('group_id', $user->group_id)
+                        ->where('id', '!=', $user->id)
+                        ->first();
+
+                    if ($newLeader) {
+                        $group->group_leader = $newLeader->name;
+                        $group->save();
+                        $newLeader->state = StudentStates::GroupLeader;
+                        $newLeader->save();
+                    }
+                }
+            }
+
+            User::where('id', $user->id)
+                ->update([
+                    'state' => StudentStates::NotJoined,
+                    'group_id' => null,
+                ]);
+
+            $group = Group::find($group->id);
+
+            if ($group != null) {
+                $group->decrement('total_members');
+
+                if ($group->total_members < 4) {
+                    $group->update(['status' => GroupStatues::New]);
+                }
             }
         }
 
