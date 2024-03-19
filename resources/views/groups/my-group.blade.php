@@ -23,9 +23,7 @@
         </h5>
         <form action="{{ route('leaveGroup') }}" method="POST">
             @csrf
-            <x-danger-button class="ms-3">
-                {{ __('Leave Group') }}
-            </x-danger-button>
+                    
         </form>
         {{-- Displaying Group Leader --}}
         @foreach ($users as $user)
@@ -41,5 +39,11 @@
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $user->name }}</p>
             @endif
         @endforeach
+        <div class="flex items-center justify-end mt-4">
+        <x-danger-button>
+                {{ __('Leave Group') }}
+            </x-danger-button>    
+        </div>
+        
     </div>
 </div>
