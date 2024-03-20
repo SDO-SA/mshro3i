@@ -6,6 +6,8 @@
         </h2>
     </x-slot>
     
+    @include('profile.my-profile')
+
     @can('viewGroupButtons', App\Models\Group::class)
         @include('groups.group-index')
     @endcan

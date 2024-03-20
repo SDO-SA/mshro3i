@@ -21,12 +21,7 @@
                     class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Confirmed</span>
             @endif
         </h5>
-        <form action="{{ route('leaveGroup') }}" method="POST">
-            @csrf
-            <x-danger-button class="ms-3">
-                {{ __('Leave Group') }}
-            </x-danger-button>
-        </form>
+        
         {{-- Displaying Group Leader --}}
         @foreach ($users as $user)
             @if ($user->state == 'group_leader')
@@ -41,5 +36,13 @@
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $user->name }}</p>
             @endif
         @endforeach
+        <div class="flex items-center justify-end mt-4">
+            <form action="{{ route('leaveGroup') }}" method="POST">
+                @csrf
+                <x-danger-button>
+                    {{ __('Leave Group') }}
+                </x-danger-button>     
+            </form>
+        </div>
     </div>
 </div>
