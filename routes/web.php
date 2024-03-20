@@ -42,9 +42,9 @@ Route::prefix('groups')
     ->group(function () {
         Route::get('/create-group', [GroupController::class, 'createForm'])->name('creategroup');
         Route::post('/create-group', [GroupController::class, 'createNewGroup']);
-        Route::get('/browse-list', [GroupController::class, 'list']);
+        Route::get('/browse-list', [GroupController::class, 'list'])->name('browsegroup');
         Route::get('/my-group', [GroupController::class, 'show'])->name('mygroup');
-        Route::get('/join-group/{group_id}', [GroupController::class, 'joinGroup'])->name('joingroup');
+        Route::post('/join-group/{group_id}', [GroupController::class, 'joinGroup'])->name('joingroup');
         Route::post('/leave-group', [GroupController::class, 'leaveGroup'])->name('leaveGroup');
     });
 

@@ -38,7 +38,7 @@ class GroupController extends Controller
     {
         $this->authorize('canCreateNewGroup', Group::class);
         $groups = Group::where('department_id', auth()->user()->department_id)
-            ->where('total_members', '<', 4)
+            ->orderBy('total_members', 'asc')
             ->get();
 
         return view('groups.group-list', compact('groups'));
@@ -59,7 +59,6 @@ class GroupController extends Controller
             $group = Group::create([
                 'name' => $request->name,
                 'department_id' => Department::find($user->department_id)->id,
-                'group_leader' => $user->name,
                 'total_members' => 1,
                 'status' => GroupStatues::New,
             ]);
@@ -73,15 +72,15 @@ class GroupController extends Controller
                     'group_id' => $group->id,
                 ]);
 
-            $gmbid = $request->groupmembers;
-            if (! empty($gmbid[0])) {
-                $group->total_members = $group->total_members + count($gmbid);
+            $validMembers = array_filter($request->groupmembers);
+            if (! empty($validMembers)) {
+                $group->total_members = $group->total_members + count($validMembers);
                 if ($group->total_members >= 4) {
                     $group->status = GroupStatues::Pending;
                 }
                 $group->save();
 
-                User::whereIn('id', $gmbid)
+                User::whereIn('id', $validMembers)
                     ->update([
                         'state' => StudentStates::GroupMember,
                         'group_id' => $group->id,
@@ -98,7 +97,12 @@ class GroupController extends Controller
 
         $user = auth()->user();
         $group = Group::find($group_id);
+
         if ($group) {
+            if ($group->total_members >= 4) {
+                abort(403, 'Unauthorized');
+            }
+
             $user->update([
                 'state' => StudentStates::GroupMember,
             ]);
@@ -132,8 +136,6 @@ class GroupController extends Controller
                         ->first();
 
                     if ($newLeader) {
-                        $group->group_leader = $newLeader->name;
-                        $group->save();
                         $newLeader->state = StudentStates::GroupLeader;
                         $newLeader->save();
                     }
