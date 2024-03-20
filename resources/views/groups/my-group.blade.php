@@ -6,8 +6,7 @@
     }
 @endphp
 <div class="flex items-center justify-center p-6">
-    <div
-        class="max-w-sm p-6 min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="max-w-sm p-6 min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         {{-- Displaying Group name and status --}}
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $group->name }}
             @if ($group->status == 'new')
@@ -39,9 +38,7 @@
         <div class="flex items-center justify-end mt-4">
             <form action="{{ route('leaveGroup') }}" method="POST">
                 @csrf
-                <x-danger-button>
-                    {{ __('Leave Group') }}
-                </x-danger-button>     
+                <button class="btn btn-error">{{ __('Leave Group') }}</button>    
             </form>
         </div>
     </div>

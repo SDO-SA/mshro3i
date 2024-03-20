@@ -5,16 +5,49 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2">
+        <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-2">
             @foreach ($groups as $group)
-                <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative" >
-                    <div class="p-9 min-h-44">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $group->name }}</h5>
-                        <p class="font-normal text-gray-700 dark:text-gray-400">Group Leader: {{ $group->group_leader }}</p>
-                        <p class="font-normal text-gray-700 dark:text-gray-400">Total Members: {{$group->total_members}}</p>
-                        <a href="{{ route('joingroup', ['group_id' => $group->id]) }}" class="absolute bottom-4 right-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Join
-                        </a>
+                @php
+                    $users = App\Models\User::where('group_id', $group->id)->get();
+                @endphp
+                <div class="max-w-sm p-6 min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    {{-- Displaying Group name and status --}}
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $group->name }}
+                        @if ($group->status == 'new')
+                            <span
+                                class="bg-gray-100 text-gray-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">New</span>
+                        @elseif ($group->status == 'pending')
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
+                        @elseif ($group->status == 'confirmed')
+                            <span
+                                class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Confirmed</span>
+                        @endif
+                    </h5>
+                    
+                    {{-- Displaying Group Leader --}}
+                    @foreach ($users as $user)
+                        @if ($user->state == 'group_leader')
+                            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Group Leader <span class="font-normal">{{ $user->name }}</span> </p>
+                        @endif
+                    @endforeach
+                    <hr class="p-1">
+                    {{-- Displaying Group Members --}}
+                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Group Members</p>
+                    @foreach ($users as $user)
+                        @if ($user->state == 'group_member')
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $user->name }}</p>
+                        @endif
+                    @endforeach
+                    <div class="flex items-center justify-end mt-4">
+                        @if ($group->total_members >= 4)
+                        <button class="btn" disabled="disabled">Join</button>
+                        @else
+                        <form action="{{ route('joingroup', ['group_id' => $group->id]) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-neutral">{{ __('Join') }}</button>   
+                        </form> 
+                        @endif
                     </div>
                 </div>
             @endforeach
