@@ -25,11 +25,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/toggle-dark-mode', function () {
-    session()->put('darkMode', ! session('darkMode'));
-
-    return back();
-})->name('toggle-dark-mode');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
