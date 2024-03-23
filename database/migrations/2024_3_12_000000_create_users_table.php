@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->integer('university_id')->unique();
             $table->string('email')->unique();
+            $table->unsignedBigInteger('college_id');
             $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->string('state');
             $table->string('password');
-            $table->unsignedBigInteger('group_id')->nullable();
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'university_id' => fake()->unique()->randomNumber(5),
             'email' => fake()->unique()->safeEmail(),
+            'college_id' => 1,
             'department_id' => Department::query()->get()->random()->id,
             'state' => StudentStates::NotJoined,
             'password' => static::$password ??= Hash::make('password'),

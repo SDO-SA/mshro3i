@@ -17,13 +17,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        User::factory(15)->create();
+        User::factory(80)->create();
 
         /** @var User $student */
         $student1 = User::create([
             'name' => 'سعود العتيبي',
             'email' => 'student@example.com',
             'university_id' => 442003532,
+            'college_id' => 1,
             'department_id' => Department::query()->get()->random()->id,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
             'name' => 'محمد الشريف',
             'email' => 'student2@example.com',
             'university_id' => 443003532,
+            'college_id' => 1,
             'department_id' => Department::query()->get()->random()->id,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
@@ -46,6 +48,7 @@ class UserSeeder extends Seeder
             'name' => 'معيض الزهراني',
             'email' => 'student3@example.com',
             'university_id' => 444003532,
+            'college_id' => 1,
             'department_id' => Department::query()->get()->random()->id,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
@@ -57,6 +60,7 @@ class UserSeeder extends Seeder
             'name' => 'محمد احمد',
             'email' => 'student4@example.com',
             'university_id' => 445303532,
+            'college_id' => 1,
             'department_id' => Department::query()->get()->random()->id,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
