@@ -18,7 +18,7 @@
                                 class="bg-gray-100 text-gray-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">New</span>
                         @elseif ($group->status == 'pending')
                             <span
-                                class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
+                                class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Full</span>
                         @elseif ($group->status == 'confirmed')
                             <span
                                 class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Confirmed</span>
@@ -41,7 +41,7 @@
                     @endforeach
                     <div class="flex items-center justify-end mt-4">
                         @if ($group->total_members >= 4)
-                        <button class="btn" disabled="disabled">Join</button>
+                        
                         @else
                         <form action="{{ route('joingroup', ['group_id' => $group->id]) }}" method="POST">
                             @csrf
