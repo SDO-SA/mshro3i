@@ -38,12 +38,12 @@
         <script>
             $(document).ready(function() {
                 $('#supervisor').select2({
-                    placeholder: 'Search for supervisor',
+                    placeholder: 'Search for Supervisor',
                     allowClear: true,
                 });
 
                 $('#groupmembers').select2({
-                    placeholder: 'Search for group members',
+                    placeholder: 'Search for Group members',
                     allowClear: true,
                 });
             });
