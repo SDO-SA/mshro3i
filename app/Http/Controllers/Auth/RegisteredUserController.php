@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Base\RolesList;
 use App\Http\Controllers\Controller;
+use App\Models\College;
 use App\Models\Department;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -23,9 +24,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $departments = Department::pluck('department', 'id');
+        $departments = Department::all();
+        $colleges = College::all();
 
-        return view('auth.register', ['departments' => $departments]);
+        return view('auth.register', compact('departments', 'colleges'));
     }
 
     /**
@@ -46,6 +48,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'university_id' => $request->university_id,
             'email' => $request->email,
+            'college_id' => $request->college,
             'department_id' => $request->department,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make($request->password),
