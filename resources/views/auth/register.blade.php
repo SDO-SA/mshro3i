@@ -27,16 +27,27 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Department -->
+        <!-- College -->
         <div class="mt-4">
+            <x-input-label for="college" :value="__('College')" />
+            <select id="college" name="college" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
+                <option value="" selected hidden>Select College</option>
+                @foreach($colleges as $college)
+                    <option value="{{ $college->id }}">{{ $college->name_ar }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('college')" class="mt-2" />
+        </div>
+
+        <!-- Department -->
+        <!-- Department -->
+        <div class="mt-4" id="departmentContainer" style="display: none;">
             <x-input-label for="department" :value="__('Department')" />
             <select id="department" name="department" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
                 <option value="" selected hidden>Select Department</option>
-                @foreach($departments as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
-                @endforeach
+                <!-- Departments will be dynamically populated based on the selected college -->
             </select>
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-error :messages="$errors->get('department')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -70,4 +81,42 @@
             </x-primary-button>
         </div>
     </form>
+    <script>
+        // When the college selection changes
+        document.getElementById('college').addEventListener('change', function () {
+        var collegeId = this.value;
+        var departmentContainer = document.getElementById('departmentContainer');
+        var departmentSelect = document.getElementById('department');
+
+        // Clear the existing department options
+        departmentSelect.innerHTML = '<option value="" selected hidden>Select Department</option>';
+
+        if (collegeId !== '') {
+            // Make an AJAX request to fetch the departments for the selected college
+            fetch('/departments/' + collegeId)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // Populate the department select with the fetched departments
+                    for (var departmentId in data) {
+                        var option = document.createElement('option');
+                        option.value = departmentId;
+                        option.textContent = data[departmentId];
+                        departmentSelect.appendChild(option);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            // Show the department container
+            departmentContainer.style.display = 'block';
+        } else {
+            // Hide the department container if no college is selected
+            departmentContainer.style.display = 'none';
+        }
+    });
+    </script>
 </x-guest-layout>
+

@@ -26,7 +26,7 @@ class GroupController extends Controller
         $groupMembers = User::where('department_id', $user->department_id)
             ->where('id', '!=', $user->id)
             ->where('state', StudentStates::NotJoined)
-            ->pluck('name', 'id');
+            ->get();
 
         $supervisors = Supervisor::where('department_id', $user->department_id)
             ->pluck('name', 'id');
