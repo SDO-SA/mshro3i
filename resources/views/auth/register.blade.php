@@ -4,7 +4,7 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-required-input for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                 autofocus autocomplete="name" placeholder="Enter Your Full Name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -12,16 +12,16 @@
 
         <!-- University ID -->
         <div class="mt-4">
-            <x-input-label for="university_id" :value="__('University ID')" />
+            <x-required-input for="university_id" :value="__('University ID')" />
             <x-text-input id="university_id" class="block mt-1 w-full" type="number" name="university_id"
                 step="1" :value="old('university_id')" required autofocus
                 placeholder="Enter University ID" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-error :messages="$errors->get('university_id')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <x-required-input for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                 required autocomplete="username" placeholder="Enter University Email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -29,7 +29,7 @@
 
         <!-- College -->
         <div class="mt-4">
-            <x-input-label for="college" :value="__('College')" />
+            <x-required-input for="college" :value="__('College')" />
             <select id="college" name="college" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
                 <option value="" selected hidden>Select College</option>
                 @foreach($colleges as $college)
@@ -42,7 +42,7 @@
         <!-- Department -->
         <!-- Department -->
         <div class="mt-4" id="departmentContainer" style="display: none;">
-            <x-input-label for="department" :value="__('Department')" />
+            <x-required-input for="department" :value="__('Department')" />
             <select id="department" name="department" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
                 <option value="" selected hidden>Select Department</option>
                 <!-- Departments will be dynamically populated based on the selected college -->
@@ -52,7 +52,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-required-input for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" placeholder="Enter Password" />
@@ -62,7 +62,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-required-input for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" />
