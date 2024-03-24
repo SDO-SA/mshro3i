@@ -45,8 +45,6 @@
             <x-required-input for="department" :value="__('app.department')" />
             <select id="department" name="department" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
                 <option value="" selected hidden>{{__('app.select_department')}}</option>
-                <!-- فيه مشكلة هنا كتبتها نفس الكولج بس ما صارت --!>
-                <!-- Departments will be dynamically populated based on the selected college -->
             </select>
             <x-input-error :messages="$errors->get('department')" class="mt-2" />
         </div>
@@ -68,8 +66,6 @@
                     <li id="minLength"><i class="fas fa-times text-red-500"></i> {{__('app.password_rules.min_length')}}</li>
                     <li id="uppercase"><i class="fas fa-times text-red-500"></i> {{__('app.password_rules.uppercase')}}</li> 
                     <li id="lowercase"><i class="fas fa-times text-red-500"></i> {{__('app.password_rules.lowercase')}}</li>
-                    <!--ماعرفت اترجم كابيتل وسمول + لما تكتب اي شي في الباسوورد الكلام يرجع انقليزي--!>
-                    <-->
                 </ul>
                 <span id="errorMessage" class="font-semibold text-red-500"></span>
             </div>
@@ -108,7 +104,7 @@
         var departmentSelect = document.getElementById('department');
 
         // Clear the existing department options
-        departmentSelect.innerHTML = '<option value="" selected hidden>Select Department</option>';
+        departmentSelect.innerHTML = '<option value="" selected hidden>{{__('app.select_department')}}</option>';
 
         if (collegeId !== '') {
             // Make an AJAX request to fetch the departments for the selected college
@@ -155,20 +151,20 @@
             const errorMessage = $('#errorMessage');
  
             $('#minLength').html(password.length >= 8 ?
-                '<i class="fas fa-check text-green-500"></i> Minimum 8 characters' :
-                '<i class="fas fa-times text-red-500"></i> Minimum 8 characters');
+                '<i class="fas fa-check text-green-500"></i> {{__('app.password_rules.min_length')}}' :
+                '<i class="fas fa-times text-red-500"></i> {{__('app.password_rules.min_length')}}');
             $('#uppercase').html(/[A-Z]/.test(password) ?
-                '<i class="fas fa-check text-green-500"></i> At least one uppercase letter' :
-                '<i class="fas fa-times text-red-500"></i> At least one uppercase letter');
+                '<i class="fas fa-check text-green-500"></i> {{__('app.password_rules.uppercase')}}' :
+                '<i class="fas fa-times text-red-500"></i> {{__('app.password_rules.uppercase')}}');
             $('#lowercase').html(/[a-z]/.test(password) ?
-                '<i class="fas fa-check text-green-500"></i> At least one lowercase letter' :
-                '<i class="fas fa-times text-red-500"></i> At least one lowercase letter');
+                '<i class="fas fa-check text-green-500"></i> {{__('app.password_rules.lowercase')}}' :
+                '<i class="fas fa-times text-red-500"></i> {{__('app.password_rules.lowercase')}}');
  
             if (strongPasswordRegex.test(password)) {
-                errorMessage.text('Strong Password').removeClass('text-red-500')
+                errorMessage.text('{{__('app.password_rules.strong')}}').removeClass('text-red-500')
                     .addClass('text-green-500');
             } else {
-                errorMessage.text('Weak Password').removeClass('text-green-500')
+                errorMessage.text('{{__('app.password_rules.weak')}}').removeClass('text-green-500')
                     .addClass('text-red-500');
             }
         });

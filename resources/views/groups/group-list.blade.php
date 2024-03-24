@@ -28,7 +28,7 @@
                     {{-- Displaying Group Leader --}}
                     @foreach ($users as $user)
                         @if ($user->state == 'group_leader')
-                            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{__('app.group_leader')}}<span class="font-normal">{{ $user->name }}</span> </p>
+                            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{__('app.group_leader')}} <span class="font-normal">{{ $user->name }}</span> </p>
                         @endif
                     @endforeach
                     <hr class="p-1">

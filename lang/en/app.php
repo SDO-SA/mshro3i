@@ -13,7 +13,7 @@ return [
         'min_length' => 'Minimum 8 characters',
         'uppercase' => 'At least one uppercase letter',
         'lowercase' => 'At least one lowercase letter',
-        ],
+    ],
     'confirm_password' => 'Confirm Password',
     'enter_confirm_password' => 'Confirm Password',
     'name' => 'Name',
@@ -46,13 +46,19 @@ return [
     'pending' => 'Pending',
     'confirmed' => 'Confirmed',
     'join' => 'Join',
+    'leave_group' => 'Leave Group',
     'group_leader' => 'Group Leader',
     'group_members' => 'Group Members',
-    
+
     'group_name' => 'Group Name',
     'group_supervisor' => 'Supervisor',
 
-
+    'no_project' => "You Don't have a Project yet!",
+    'create_project' => 'Create Project Proposal',
+    'project_name' => 'Project Name',
+    'abstract' => 'Abstract',
+    'project_field' => 'Project Fields',
+    'project_proposal' => 'Upload Project Proposal',
 
     'create' => 'Create',
     'cancel' => 'Cancel',

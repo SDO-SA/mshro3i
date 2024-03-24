@@ -13,7 +13,9 @@ return [
         'min_length' => 'ثمانية رموز على الأقل',
         'uppercase' => 'حرف كابيتل على الأقل',
         'lowercase' => 'حرف سمول على الأقل',
-        ],
+        'strong' => 'كلمة سر قوية',
+        'weak' => 'كلمة سر ضعيفة',
+    ],
     'confirm_password' => 'تأكيد كلمة السر',
     'enter_confirm_password' => 'تأكيد كلمة السر',
     'name' => 'الإسم',
@@ -32,12 +34,12 @@ return [
     'profile' => 'ملفك الشخصي',
     'log_out' => 'تسجيل الخروج',
     'state' => 'الحالة',
-    'state_gruop_leader' => 'رئيس مجموعة',
+    'state_group_leader' => 'رئيس مجموعة',
     'state_group_member' => 'عضو في مجموعة',
     'state_not_member' => 'لست عضو في أي مجموعة',
     'group' => 'المجموعة',
     'group_state' => 'لست بمجموعة',
-    'no_group' => "ليس لديك مجموعة!",
+    'no_group' => 'ليس لديك مجموعة!',
     'create_group' => 'انشئ مجموعة',
     'browse_groups' => 'تصفح المجموعات',
 
@@ -46,16 +48,21 @@ return [
     'pending' => 'معلق',
     'confirmed' => 'معتمد',
     'join' => 'إنضمام',
+    'leave_group' => 'مغادرة المجموعة',
     'group_leader' => 'رئيس المجموعة',
     'group_members' => 'أعضاء المجموعة',
 
     'group_name' => 'اسم المجموعة',
     'group_supervisor' => 'مشرف المجموعة',
 
-
+    'no_project' => 'ليس لديك مشروع!',
+    'create_project' => 'انشئ مشروع',
+    'project_name' => 'اسم المشروع',
+    'abstract' => 'الفكرة المختصرة',
+    'project_field' => 'مجالات المشروع',
+    'project_proposal' => 'إرفع مقترح المشروع',
 
     'create' => 'انشاء',
     'cancel' => 'تراجع',
-
 
 ];
