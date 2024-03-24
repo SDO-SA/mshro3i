@@ -72,7 +72,7 @@ class GroupController extends Controller
                     'group_id' => $group->id,
                 ]);
 
-            $validMembers = array_filter($request->groupmembers);
+            $validMembers = is_array($request->groupmembers) ? array_filter($request->groupmembers) : [];
             if (! empty($validMembers)) {
                 $group->total_members = $group->total_members + count($validMembers);
                 if ($group->total_members >= 4) {
