@@ -14,7 +14,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -38,11 +37,11 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
-            'university_id' => ['required', 'integer','digits:9', 'unique:'.User::class],
+            'name' => ['required', 'string', 'regex:/^[\p{Arabic}\sA-Za-z]+$/u', 'max:255'],
+            'university_id' => ['required', 'integer', 'digits:9', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', //'ends_with:@st.uqu.edu.sa,@uqu.edu.sa',
-            'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'unique:'.User::class],
+            'password' => ['required', 'confirmed', 'string', 'min:8', 'regex:/^(?=.*[A-Z]).+$/'],
         ]);
 
         $user = User::create([
