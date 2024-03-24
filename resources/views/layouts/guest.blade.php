@@ -22,7 +22,7 @@
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
-    <body class="font-sans text-gray-900 antialiased light">
+    <body class="font-sans text-gray-900 antialiased light" dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
