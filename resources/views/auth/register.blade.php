@@ -53,12 +53,25 @@
         <!-- Password -->
         <div class="mt-4">
             <x-required-input for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" placeholder="Enter Password" />
-
+            <div class="flex items-center">
+                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                              autocomplete="new-password" placeholder="Enter Password" />
+                <button class="ml-2 px-3 py-2 border border-gray-300
+                         rounded-md bg-white text-gray-600" type="button" id="togglePassword">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <div class="mt-4" id="passwordValidationList" style="display: none;">
+                <ul>
+                    <li id="minLength"><i class="fas fa-times text-red-500"></i> Minimum 8 characters</li>
+                    <li id="uppercase"><i class="fas fa-times text-red-500"></i> At least one uppercase letter</li>
+                    <li id="lowercase"><i class="fas fa-times text-red-500"></i> At least one lowercase letter</li>
+                </ul>
+                <span id="errorMessage" class="font-semibold text-red-500"></span>
+            </div>
         </div>
+        
 
         <!-- Confirm Password -->
         <div class="mt-4">
@@ -83,6 +96,9 @@
     </form>
     <script>
         // When the college selection changes
+        document.getElementById('password').addEventListener('focus', function () {
+            document.getElementById('passwordValidationList').style.display = 'block';
+        });
         document.getElementById('college').addEventListener('change', function () {
         var collegeId = this.value;
         var departmentContainer = document.getElementById('departmentContainer');
@@ -117,6 +133,42 @@
             departmentContainer.style.display = 'none';
         }
     });
+    $('#togglePassword').click(function () {
+            const passwordInput = $('#password');
+            const icon = $(this).find('i');
+ 
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                icon.removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                passwordInput.attr('type', 'password');
+                icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+ 
+        $('#password').on('input', function () {
+            const password = $(this).val();
+            const strongPasswordRegex = /^(?=.*[A-Z]).+$/;
+            const errorMessage = $('#errorMessage');
+ 
+            $('#minLength').html(password.length >= 8 ?
+                '<i class="fas fa-check text-green-500"></i> Minimum 8 characters' :
+                '<i class="fas fa-times text-red-500"></i> Minimum 8 characters');
+            $('#uppercase').html(/[A-Z]/.test(password) ?
+                '<i class="fas fa-check text-green-500"></i> At least one uppercase letter' :
+                '<i class="fas fa-times text-red-500"></i> At least one uppercase letter');
+            $('#lowercase').html(/[a-z]/.test(password) ?
+                '<i class="fas fa-check text-green-500"></i> At least one lowercase letter' :
+                '<i class="fas fa-times text-red-500"></i> At least one lowercase letter');
+ 
+            if (strongPasswordRegex.test(password)) {
+                errorMessage.text('Strong Password').removeClass('text-red-500')
+                    .addClass('text-green-500');
+            } else {
+                errorMessage.text('Weak Password').removeClass('text-green-500')
+                    .addClass('text-red-500');
+            }
+        });
     </script>
 </x-guest-layout>
 
