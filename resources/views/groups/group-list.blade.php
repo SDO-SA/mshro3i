@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Groups') }}
+            {{__('app.groups')}}
         </h2>
     </x-slot>
     <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
@@ -15,25 +15,25 @@
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $group->name }}
                         @if ($group->status == 'new')
                             <span
-                                class="bg-gray-100 text-gray-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">New</span>
+                                class="bg-gray-100 text-gray-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">{{__('app.new')}}</span>
                         @elseif ($group->status == 'pending')
                             <span
-                                class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Full</span>
+                                class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">{{__('app.pending')}}</span>
                         @elseif ($group->status == 'confirmed')
                             <span
-                                class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Confirmed</span>
+                                class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{__('app.confirmed')}}</span>
                         @endif
                     </h5>
                     
                     {{-- Displaying Group Leader --}}
                     @foreach ($users as $user)
                         @if ($user->state == 'group_leader')
-                            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Group Leader <span class="font-normal">{{ $user->name }}</span> </p>
+                            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{__('app.group_leader')}}<span class="font-normal">{{ $user->name }}</span> </p>
                         @endif
                     @endforeach
                     <hr class="p-1">
                     {{-- Displaying Group Members --}}
-                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">Group Members</p>
+                    <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{__('app.group_members')}}</p>
                     @foreach ($users as $user)
                         @if ($user->state == 'group_member')
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $user->name }}</p>
@@ -45,7 +45,7 @@
                         @else
                         <form action="{{ route('joingroup', ['group_id' => $group->id]) }}" method="POST">
                             @csrf
-                            <button class="btn btn-neutral">{{ __('Join') }}</button>   
+                            <button class="btn btn-neutral">{{ __('app.join') }}</button>   
                         </form> 
                         @endif
                     </div>
