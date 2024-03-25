@@ -10,7 +10,7 @@ class ProjectController extends Controller
 {
     public function createForm()
     {
-        // $this->authorize('canCreateProjectProposal', Project::class);
+        $this->authorize('canCreateProjectProposal', Project::class);
 
         return view('projects.project-form');
     }
