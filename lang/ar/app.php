@@ -31,6 +31,9 @@ return [
     'password_link' => 'ارسل رابط تعيين كلمة المرور الجديدة',
 
     'dashboard' => 'لوحة التحكم',
+    'assignments' => 'الواجبات',
+    'resources' => 'المصادر',
+    'announcements' => 'الاعلانات',
     'profile' => 'ملفك الشخصي',
     'log_out' => 'تسجيل الخروج',
     'state' => 'الحالة',
@@ -51,6 +54,7 @@ return [
     'leave_group' => 'مغادرة المجموعة',
     'group_leader' => 'رئيس المجموعة',
     'group_members' => 'أعضاء المجموعة',
+    'group_members_limit' => 'ثلاثة كحد اقصى',
 
     'group_name' => 'اسم المجموعة',
     'group_supervisor' => 'مشرف المجموعة',
