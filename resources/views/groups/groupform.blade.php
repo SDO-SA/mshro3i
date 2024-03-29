@@ -22,7 +22,7 @@
 
         <div class="mt-4">
             <x-input-label for="groupmembers" :value="__('app.group_members')" />
-            <select id="groupmembers" name="groupmembers[3]" class="block mt-1 w-full" autofocus multiple>
+            <select id="groupmembers" name="groupmembers[]" class="block mt-1 w-full" autofocus multiple>
                 @foreach($groupMembers as $member)
                     <option value="{{ $member->id }}">{{ $member->name }} ({{ $member->university_id }})</option>
                 @endforeach
