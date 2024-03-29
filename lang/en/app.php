@@ -29,6 +29,9 @@ return [
     'password_link' => 'EMAIL PASSWORD RESET LINK',
 
     'dashboard' => 'Dashboard',
+    'assignments' => 'Assignments',
+    'resources' => 'Resources',
+    'announcements' => 'Announcements',
     'profile' => 'Profile',
     'log_out' => 'Log Out',
     'state' => 'State',
@@ -49,6 +52,7 @@ return [
     'leave_group' => 'Leave Group',
     'group_leader' => 'Group Leader',
     'group_members' => 'Group Members',
+    'group_members_limit' => 'Max of 3',
 
     'group_name' => 'Group Name',
     'group_supervisor' => 'Supervisor',

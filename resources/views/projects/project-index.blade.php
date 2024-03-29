@@ -1,5 +1,5 @@
 
-<div class="flex flex-col items-center justify-center h-96">
+<div class="flex flex-col items-center justify-center">
     <h2 class="font-semibold text-4xl text-gray-800 dark:text-gray-200 leading-tight">{{__('app.no_project')}}</h2>
     @can('canCreateProjectProposal', App\Models\Project::class)
         <div class="flex mt-4 md:mt-6">

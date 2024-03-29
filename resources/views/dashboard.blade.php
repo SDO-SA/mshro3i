@@ -17,7 +17,15 @@
     @endcan
 
     @can('canShowMyGroup', App\Models\Group::class)
-        @include('groups.my-group')
+    <div class="flex justify-center">
+        <div class="">
+         @include('groups.my-group')   
+        </div>
+        <div class="">
+        @include('groups.announcement-card')    
+        </div>
+        
+    </div>
     @endcan
 
     
