@@ -11,10 +11,10 @@
 
         <div class="mt-4">
             <x-required-input for="supervisor" :value="__('app.group_supervisor')" />
-            <select id="supervisor" name="supervisor" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required autofocus>
+            <select id="supervisor" name="supervisor[]" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required multiple autofocus>
                 <option value="" hidden>Select Supervisor</option>
                 @foreach($supervisors as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
+                    <option value="{{ $name }}">{{ $name }}</option>
                 @endforeach
             </select>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
