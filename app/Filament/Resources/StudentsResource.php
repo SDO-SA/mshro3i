@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentsResource\Pages;
+use App\Filament\Resources\StudentsResource\Pages\ListStudents;
 use App\Filament\Resources\StudentsResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
@@ -43,6 +44,7 @@ class StudentsResource extends Resource
     {
         $currentUser = auth()->user();
         return $table
+            ->query(app(ListStudents::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('email')->sortable(),
