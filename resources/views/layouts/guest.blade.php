@@ -42,6 +42,12 @@
                 $('#supervisor').select2({
                     placeholder: 'Search for Supervisor',
                     allowClear: true,
+                }).on('select2:select', function(e) {
+                    var selectedMembers = $(this).val();
+                    if (selectedMembers && selectedMembers.length > 3) {
+                        $(this).val(selectedMembers.slice(0, 3));
+                        $(this).trigger('change');
+                    }
                 });
 
                 $('#groupmembers').select2({

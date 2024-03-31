@@ -15,6 +15,8 @@ class Group extends Model
         'department_id',
         'total_members',
         'status',
+        'supervisors',
+        'supervisor_id',
     ];
 
     public function user(): HasMany
