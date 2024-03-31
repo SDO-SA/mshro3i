@@ -19,7 +19,7 @@ class SupervisorsResource extends Resource
 {
     protected static ?string $model = Supervisor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
