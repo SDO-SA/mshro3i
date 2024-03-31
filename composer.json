@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/breeze": "^1.29",
         "laravel/framework": "^10.10",
@@ -38,7 +39,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -49,8 +51,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "fresh" : "php artisan migrate:fresh --seed && php artisan optimize:clear && php artisan cache:clear",
-        "pest" : "./vendor/bin/pest",
+        "fresh": "php artisan migrate:fresh --seed && php artisan optimize:clear && php artisan cache:clear",
+        "pest": "./vendor/bin/pest",
         "pint": "vendor/bin/pint"
     },
     "extra": {
