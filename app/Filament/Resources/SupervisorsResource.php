@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SupervisorsResource\Pages;
+use App\Filament\Resources\SupervisorsResource\Pages\ListSupervisors;
 use App\Filament\Resources\SupervisorsResource\RelationManagers;
 use App\Models\Supervisor;
 use Filament\Forms;
@@ -34,6 +35,7 @@ class SupervisorsResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(app(ListSupervisors::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('email')->sortable(),
