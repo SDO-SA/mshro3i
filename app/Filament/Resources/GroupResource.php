@@ -29,12 +29,14 @@ class GroupResource extends Resource
     public static function form(Form $form): Form
     {
         $user = auth()->user();
+        $group = $form->getModelInstance();
+        $supervisorname = optional(Supervisor::find($group->supervisor_id))->name ?? '';
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
                 TextInput::make('supervisors')->disabled(),
                 TextInput::make('total_members')->disabled(),
-                TextInput::make('supervisor_id')->label('Supervisor')->disabled(),
+                TextInput::make('supervisor_name')->label('Supervisor')->disabled()->placeholder($supervisorname),
                 Radio::make('status')
                     ->label('Status')
                     ->options([
