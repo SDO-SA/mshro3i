@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\SupervisorsResource\Pages;
+namespace App\Filament\Resources\GroupResource\Pages;
 
-use App\Filament\Resources\SupervisorsResource;
-use App\Models\Supervisor;
+use App\Filament\Resources\GroupResource;
+use App\Models\Group;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Filament\Resources\Pages\ListRecords;
 
-class ListSupervisors extends ListRecords
+class ListGroups extends ListRecords
 {
-    protected static string $resource = SupervisorsResource::class;
+    protected static string $resource = GroupResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -18,11 +18,12 @@ class ListSupervisors extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
     public function departmentIdQuery(): Builder
     {
         $departmentId = auth()->user()->department_id;
 
-        return Supervisor::query()
+        return Group::query()
             ->where('department_id', $departmentId);
     }
 }
