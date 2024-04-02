@@ -7,6 +7,7 @@ use App\Filament\Resources\GroupResource\Pages\ListGroups;
 use App\Filament\Resources\GroupResource\RelationManagers;
 use App\Models\Group;
 use App\Models\Supervisor;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
@@ -31,12 +32,23 @@ class GroupResource extends Resource
         $user = auth()->user();
         $group = $form->getModelInstance();
         $supervisorname = optional(Supervisor::find($group->supervisor_id))->name ?? '';
+        $groupUsers = User::whereHas('group', function($query) use ($group) {
+        $query->where('group_id', $group->id);
+        })->get();
+        $groupLeader = $groupUsers->where('state', 'group_leader')->first();
+        $groupMembers = $groupUsers->where('state', 'group_member')->pluck('name')->toArray();
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
                 TextInput::make('supervisors')->disabled(),
                 TextInput::make('total_members')->disabled(),
                 TextInput::make('supervisor_name')->label('Supervisor')->disabled()->placeholder($supervisorname),
+                TextInput::make('group_leader')->label('Leader')->disabled()->placeholder($groupLeader->name),
+                Select::make('supervisor_id')
+                    ->label('Assign Supervisor')
+                    ->options(Supervisor::where('department_id', $user->department_id)->pluck('name', 'id'))
+                    ->searchable(),
+                TextInput::make('group_members')->label('Members')->disabled()->placeholder(implode(', ', $groupMembers)),
                 Radio::make('status')
                     ->label('Status')
                     ->options([
@@ -45,10 +57,6 @@ class GroupResource extends Resource
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
-                Select::make('supervisor_id')
-                    ->label('Assign Supervisor')
-                    ->options(Supervisor::where('department_id', $user->department_id)->pluck('name', 'id'))
-                    ->searchable(),
             ]);
     }
 
