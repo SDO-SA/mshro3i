@@ -56,6 +56,7 @@ return [
 
     'group_name' => 'Group Name',
     'group_supervisor' => 'Supervisor',
+    'no_supervisor' => 'Not Assigned',
 
     'no_project' => "You Don't have a Project yet!",
     'create_project' => 'Create Project Proposal',
