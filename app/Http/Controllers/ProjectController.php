@@ -28,7 +28,7 @@ class ProjectController extends Controller
             'attachment' => 'required|file|mimes:pdf|max:10240',
         ]);
 
-        $attachmentPath = $request->file('attachment')->store('attachments');
+        $attachmentPath = $request->file('attachment')->store('public');
 
         Project::create([
             'name' => $request->name,
