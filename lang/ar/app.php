@@ -58,6 +58,7 @@ return [
 
     'group_name' => 'اسم المجموعة',
     'group_supervisor' => 'مشرف المجموعة',
+    'no_supervisor' => 'لا يوجد',
 
     'no_project' => 'ليس لديك مشروع!',
     'create_project' => 'انشئ مشروع',
