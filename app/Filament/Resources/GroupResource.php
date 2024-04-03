@@ -32,9 +32,7 @@ class GroupResource extends Resource
         $user = auth()->user();
         $group = $form->getModelInstance();
         $supervisorname = optional(Supervisor::find($group->supervisor_id))->name ?? '';
-        $groupUsers = User::whereHas('group', function($query) use ($group) {
-        $query->where('group_id', $group->id);
-        })->get();
+        $groupUsers = User::where('group_id', $group->id)->get();
         $groupLeader = $groupUsers->where('state', 'group_leader')->first();
         $groupMembers = $groupUsers->where('state', 'group_member')->pluck('name')->toArray();
         return $form
