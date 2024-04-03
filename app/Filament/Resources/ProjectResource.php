@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\Pages\ListProjects;
 use App\Filament\Resources\ProjectResource\RelationManagers;
+use App\Models\Group;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -27,9 +28,12 @@ class ProjectResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $group = $form->getModelInstance();
+        $groupName = optional(Group::find($group->group_id))->name ?? '';
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
+                TextInput::make('group_name')->label('Group')->disabled()->placeholder($groupName),
                 TextInput::make('projectfield')->disabled(),
                 RichEditor::make('abstract')->columnSpanFull(),
                 // FileUpload::make('attachment')
@@ -52,6 +56,7 @@ class ProjectResource extends Resource
             ->query(app(ListProjects::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
+                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
                 TextColumn::make('status')->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'pending' => 'primary',
