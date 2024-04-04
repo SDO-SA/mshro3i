@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Announcement;
 use App\Models\Group;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(SupervisorSeeder::class);
         Group::factory(100)->create();
+        Announcement::factory(30)->create();
     }
 }
