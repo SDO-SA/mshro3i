@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string('header');
-            $table->text('message');
+            $table->string('header')->nullable();
+            $table->text('message')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
