@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->uuid();
+            $table->id();
             $table->string('header');
             $table->text('message');
             $table->unsignedBigInteger('department_id')->nullable();
