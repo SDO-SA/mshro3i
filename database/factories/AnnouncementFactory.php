@@ -20,7 +20,6 @@ class AnnouncementFactory extends Factory
 
 
         return [
-            'uuid' => fake()->uuid(),
             'header' => fake()->name(),
             'message' => fake()->text(),
             'department_id' => Department::query()->get()->random()->id,
