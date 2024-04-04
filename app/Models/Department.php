@@ -20,4 +20,9 @@ class Department extends Model
     {
         return $this->belongsTo(College::class);
     }
+
+    public function announcement(): HasMany
+    {
+        return $this->hasMany(Announcement::class);
+    }
 }
