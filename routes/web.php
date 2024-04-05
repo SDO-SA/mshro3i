@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/announcement/{id}', [AnnouncementController::class, 'show'])->name('showannouncement');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/departments/{college}', [DepartmentController::class, 'getDepartment']);
@@ -61,4 +63,4 @@ Route::prefix('project')
         Route::post('/create-project', [ProjectController::class, 'createProject']);
     });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

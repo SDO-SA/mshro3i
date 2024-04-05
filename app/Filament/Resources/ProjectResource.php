@@ -47,6 +47,7 @@ class ProjectResource extends Resource
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ]);
     }
 
@@ -56,7 +57,7 @@ class ProjectResource extends Resource
             ->query(app(ListProjects::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
+                TextColumn::make('group_name')->label('Group')->getStateUsing(fn(Project $project) => $project->group->name),
                 TextColumn::make('status')->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'pending' => 'primary',

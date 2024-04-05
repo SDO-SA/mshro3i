@@ -1,10 +1,10 @@
 @php
-    $user = auth()->user();
-    if ($user->state !== 'not_joined') {
-        $group = App\Models\Group::find($user->group_id);
-        $users = App\Models\User::where('group_id', $group->id)->get();
-        $supervisor = App\Models\Supervisor::find($group->supervisor_id)->name ?? '';
-    }
+$user = auth()->user();
+if ($user->state !== 'not_joined') {
+    $group = App\Models\Group::find($user->group_id);
+    $users = App\Models\User::where('group_id', $group->id)->get();
+    $supervisor = App\Models\Supervisor::find($group->supervisor_id)->name ?? '';
+}
 @endphp
 <div class="flex items-center justify-center p-6">
     <div
@@ -31,10 +31,12 @@
             <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ __('app.group_supervisor') }} <span
                     class="font-normal">{{ $supervisor }}</span></p>
         @endif
-        @if ($user->state == 'group_leader')
-            <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ __('app.group_leader') }} <span
-                    class="font-normal">{{ $user->name }}</span> </p>
-        @endif
+        @foreach ($users as $user)
+            @if ($user->state == 'group_leader')
+                <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ __('app.group_leader') }} <span
+                        class="font-normal">{{ $user->name }}</span> </p>
+            @endif
+        @endforeach
         <hr class="p-1">
         {{-- Displaying Group Members --}}
         <p class="mb-3 font-bold text-gray-700 dark:text-gray-400">{{ __('app.group_members') }}</p>
