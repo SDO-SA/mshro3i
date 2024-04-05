@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,13 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/departments/{college}', [DepartmentController::class, 'getDepartment']);
+
+Route::prefix('resources')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('', [ResourceController::class, 'index'])->name('resources.index');
+        Route::get('{id}', [ResourceController::class, 'show'])->name('resources.show');
+    });
 
 Route::prefix('groups')
     ->middleware(['auth'])
