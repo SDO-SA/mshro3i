@@ -47,7 +47,6 @@ class ProjectResource extends Resource
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
-                TextColumn::make('created_at')->label('Created At')->since(),
             ]);
     }
 
@@ -65,6 +64,7 @@ class ProjectResource extends Resource
                         'declined' => 'danger',
 
                     })->sortable(),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 //
