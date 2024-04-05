@@ -71,7 +71,15 @@ class GroupResource extends Resource
                         'pending' => 'primary',
                         'confirmed' => 'success',
 
-                    })->sortable(),
+                    })->sortable()
+                    ->label('Status') // Add a custom label for clarity
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'new' => __('app.new'),
+                        'pending' => __('app.pending'),
+                        'confirmed' => __('app.confirmed'),
+                        default => $state,
+                    }),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 SelectFilter::make('status')

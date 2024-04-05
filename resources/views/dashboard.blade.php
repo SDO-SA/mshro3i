@@ -22,9 +22,8 @@
          @include('groups.my-group')   
         </div>
         <div class="">
-        @include('groups.announcement-card')    
+        @include('announcements.announcement-card')    
         </div>
-        
     </div>
     @endcan
 

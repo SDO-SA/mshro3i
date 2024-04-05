@@ -55,7 +55,15 @@ class StudentsResource extends Resource
                         'group_member' => 'success',
                         'group_leader' => 'primary',
 
-                    })->sortable(),
+                    })->sortable()
+                    ->label('State') // Add a custom label for clarity
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'not_joined' => 'Not Joined',
+                        'group_member' => 'Group Member',
+                        'group_leader' => 'Group Leader',
+                        default => $state,
+                    }),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 SelectFilter::make('state')
