@@ -25,4 +25,9 @@ class Department extends Model
     {
         return $this->hasMany(Announcement::class);
     }
+
+    public function resources(): HasMany
+    {
+        return $this->hasMany(Resource::class);
+    }
 }
