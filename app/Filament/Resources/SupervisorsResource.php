@@ -40,6 +40,7 @@ class SupervisorsResource extends Resource
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('email')->sortable(),
                 TextColumn::make('university_id')->sortable(),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 //

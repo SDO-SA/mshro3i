@@ -12,6 +12,7 @@ class Announcement extends Model
     protected $fillable = [
         'header',
         'message',
+        'department_id',
     ];
 
     public function department(): BelongsTo

@@ -6,6 +6,7 @@ use App\Filament\Resources\AnnouncementResource\Pages;
 use App\Filament\Resources\AnnouncementResource\Pages\ListAnnouncements;
 use App\Filament\Resources\AnnouncementResource\RelationManagers;
 use App\Models\Announcement;
+use App\Models\Department;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -28,13 +29,15 @@ class AnnouncementResource extends Resource
     public static function form(Form $form): Form
     {
         $user = auth()->user();
-        $announcement = $form->getModelInstance();
-        $announcement->department_id = $user->department->id;
-        $announcement->save();
         return $form
             ->schema([
-                TextInput::make('header')->columnSpanFull(),
-                Textarea::make('message')->columnSpanFull(),
+                TextInput::make('header')->columnSpanFull()->required(),
+                Textarea::make('message')->columnSpanFull()->required(),
+                Select::make('department_id')
+                    ->label('Department')
+                    ->default($user->department_id)
+                    ->options(Department::where('id', $user->department_id)->pluck('name_ar', 'id'))
+                    ->required(),
             ]);
     }
 
@@ -45,6 +48,7 @@ class AnnouncementResource extends Resource
             ->columns([
                 TextColumn::make('header'),
                 TextColumn::make('message')->limit(15),
+                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 //
