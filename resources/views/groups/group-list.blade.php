@@ -5,12 +5,12 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-3 sm:grid-cols-2">
+        <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1">
             @foreach ($groups as $group)
                 @php
                     $users = App\Models\User::where('group_id', $group->id)->get();
                 @endphp
-                <div class="max-w-sm p-6 min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     {{-- Displaying Group name and status --}}
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $group->name }}
                         @if ($group->status == 'new')
