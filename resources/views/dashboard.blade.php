@@ -2,10 +2,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('app.dashboard') }}
+            {{ __('app.dashboard') }}
         </h2>
     </x-slot>
-    
+
     @include('profile.my-profile')
 
     @can('canSeeProjectInfo', App\Models\Project::class)
@@ -17,14 +17,16 @@
     @endcan
 
     @can('canShowMyGroup', App\Models\Group::class)
-    <div class="flex justify-center">
-        <div class="">
-         @include('groups.my-group')   
+        <div class="flex justify-center">
+            <div class="grid lg:grid-cols-2 sm:grid-cols-1">
+                <div class="">
+                    @include('groups.my-group')
+                </div>
+                <div class="">
+                    @include('announcements.announcement-card')
+                </div>
+            </div>
         </div>
-        <div class="">
-        @include('announcements.announcement-card')    
-        </div>
-    </div>
     @endcan
 
     

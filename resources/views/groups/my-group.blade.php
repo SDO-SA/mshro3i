@@ -47,12 +47,12 @@ if ($user->state !== 'not_joined') {
         @endforeach
         @if ($group->status == 'confirmed')
         @else
-            <div class="flex items-center justify-end mt-4">
-                <form action="{{ route('leaveGroup') }}" method="POST">
+            
+                <form class="flex justify-end" action="{{ route('leaveGroup') }}" method="POST">
                     @csrf
                     <button class="btn btn-error">{{ __('app.leave_group') }}</button>
                 </form>
-            </div>
+            
         @endif
     </div>
 </div>
