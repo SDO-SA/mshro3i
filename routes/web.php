@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,13 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/departments/{college}', [DepartmentController::class, 'getDepartment']);
+
+Route::prefix('assignments')
+    ->middleware(['auth'])
+    ->group(function(){
+        Route::get('', [AssignmentController::class, 'index'])->name('assignments.index');
+        Route::get('{id}', [AssignmentController::class, 'show'])->name('assignments.show');
+    });
 
 Route::prefix('resources')
     ->middleware(['auth'])
