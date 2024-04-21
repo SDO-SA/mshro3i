@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Announcement extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'header',
         'message',
+        'brief',
         'department_id',
     ];
 

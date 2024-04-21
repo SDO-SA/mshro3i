@@ -4,10 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\Pages\ListProjects;
-use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Group;
 use App\Models\Project;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\RichEditor;
@@ -17,8 +15,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProjectResource extends Resource
 {
@@ -30,20 +26,22 @@ class ProjectResource extends Resource
     {
         $group = $form->getModelInstance();
         $groupName = optional(Group::find($group->group_id))->name ?? '';
+
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
                 TextInput::make('group_name')->label('Group')->disabled()->placeholder($groupName),
-                TextInput::make('projectfield')->disabled(),
                 RichEditor::make('abstract')->columnSpanFull(),
                 // FileUpload::make('attachment')
                 //     ->disk('public')
                 //     ->columnSpanFull(),
+                TextInput::make('projectfield')->disabled(),
+                TextInput::make('projecttech')->disabled(),
                 Radio::make('status')
                     ->label('Status')
                     ->options([
                         'approved' => 'Approve',
-                        'declined' => 'Decline'
+                        'declined' => 'Decline',
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
@@ -56,14 +54,19 @@ class ProjectResource extends Resource
             ->query(app(ListProjects::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('group_name')->label('Group')->getStateUsing(fn(Project $project) => $project->group->name),
+                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
                 TextColumn::make('status')->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'pending' => 'primary',
                         'approved' => 'success',
                         'declined' => 'danger',
 
-                    })->sortable(),
+                    })->sortable()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'pending' => __('app.pending'),
+                        'approved' => __('app.confirmed'),
+                        default => $state,
+                    }),
                 TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([

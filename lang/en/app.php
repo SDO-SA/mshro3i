@@ -63,9 +63,11 @@ return [
     'project_name' => 'Project Name',
     'abstract' => 'Abstract',
     'project_field' => 'Project Fields',
+    'project_tech' => 'Project Tech',
     'project_proposal' => 'Upload Project Proposal',
 
     'create' => 'Create',
     'cancel' => 'Cancel',
 
+    'calendar' => 'Calendar',
 ];

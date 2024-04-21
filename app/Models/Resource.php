@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Resource extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'path',

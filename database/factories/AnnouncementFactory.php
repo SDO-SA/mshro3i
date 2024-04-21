@@ -18,9 +18,9 @@ class AnnouncementFactory extends Factory
     public function definition(): array
     {
 
-
         return [
             'header' => fake()->name(),
+            'brief' => fake()->text(),
             'message' => fake()->text(),
             'department_id' => Department::query()->get()->random()->id,
         ];

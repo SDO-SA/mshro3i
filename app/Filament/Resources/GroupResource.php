@@ -4,11 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GroupResource\Pages;
 use App\Filament\Resources\GroupResource\Pages\ListGroups;
-use App\Filament\Resources\GroupResource\RelationManagers;
 use App\Models\Group;
 use App\Models\Supervisor;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,8 +16,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GroupResource extends Resource
 {
@@ -35,6 +31,7 @@ class GroupResource extends Resource
         $groupUsers = User::where('group_id', $group->id)->get();
         $groupLeader = $groupUsers->where('state', 'group_leader')->first();
         $groupMembers = $groupUsers->where('state', 'group_member')->pluck('name')->toArray();
+
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
@@ -51,7 +48,7 @@ class GroupResource extends Resource
                     ->label('Status')
                     ->options([
                         'pending' => 'Pending',
-                        'confirmed' => 'Confirmed'
+                        'confirmed' => 'Confirmed',
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
@@ -66,14 +63,14 @@ class GroupResource extends Resource
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('total_members')->sortable(),
                 TextColumn::make('status')->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'new' => 'info',
                         'pending' => 'primary',
                         'confirmed' => 'success',
 
                     })->sortable()
                     ->label('Status') // Add a custom label for clarity
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
                         'new' => __('app.new'),
                         'pending' => __('app.pending'),
                         'confirmed' => __('app.confirmed'),
@@ -86,8 +83,8 @@ class GroupResource extends Resource
                     ->options([
                         'new' => 'New',
                         'pending' => 'Pending',
-                        'confirmed' => 'Confirmed'
-                    ])
+                        'confirmed' => 'Confirmed',
+                    ]),
 
             ])
             ->actions([

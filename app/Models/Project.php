@@ -16,6 +16,7 @@ class Project extends Model
         'group_id',
         'abstract',
         'projectfield',
+        'projecttech',
         'attachment',
         'status',
     ];

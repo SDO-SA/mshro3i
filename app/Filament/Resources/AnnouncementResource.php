@@ -4,21 +4,16 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AnnouncementResource\Pages;
 use App\Filament\Resources\AnnouncementResource\Pages\ListAnnouncements;
-use App\Filament\Resources\AnnouncementResource\RelationManagers;
 use App\Models\Announcement;
 use App\Models\Department;
-use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AnnouncementResource extends Resource
 {
@@ -29,10 +24,12 @@ class AnnouncementResource extends Resource
     public static function form(Form $form): Form
     {
         $user = auth()->user();
+
         return $form
             ->schema([
-                TextInput::make('header')->columnSpanFull()->required(),
-                Textarea::make('message')->columnSpanFull()->required(),
+                TextInput::make('header')->required(),
+                TextInput::make('brief')->required(),
+                RichEditor::make('message')->columnSpanFull()->required(),
                 Select::make('department_id')
                     ->label('Department')
                     ->default($user->department_id)

@@ -11,25 +11,26 @@ class StudentGroupStateChart extends ChartWidget
 
     protected function getData(): array
     {
-        $notjoined = Group::where('status','new')->count();
-        $groupmember = Group::where('status','pending')->count();
-        $groupleader = Group::where('status','confirmed')->count();
+        $notjoined = Group::where('status', 'new')->count();
+        $groupmember = Group::where('status', 'pending')->count();
+        $groupleader = Group::where('status', 'confirmed')->count();
+
         return [
             'datasets' => [
                 [
                     'label' => 'User State',
-                    'data' => [$notjoined,$groupmember,$groupleader],
+                    'data' => [$notjoined, $groupmember, $groupleader],
                     'backgroundColor' => [
                         'rgb(255, 99, 132)',
                         'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
+                        'rgb(255, 205, 86)',
                     ],
                 ],
             ],
             'labels' => [
                 'جديد',
                 'معلق',
-                'مؤكد'
+                'مؤكد',
             ],
         ];
     }
@@ -43,13 +44,13 @@ class StudentGroupStateChart extends ChartWidget
     {
         return [
             'scales' => [
-                'x' =>[
+                'x' => [
                     'display' => false,
                 ],
-                'y' =>[
+                'y' => [
                     'display' => false,
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

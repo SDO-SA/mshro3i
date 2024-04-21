@@ -9,7 +9,7 @@ $announcements = App\Models\Announcement::where('department_id', $user->departme
         @foreach($announcements as $announcement)
             <a href="{{route('showannouncement', $announcement->id)}}">
                 <h5 class="text-xl font-bold text-gray-700 dark:text-gray-400">{{ $announcement->header }}</h5>
-                <p class="text-gray-700 dark:text-gray-400">{{ Str::limit($announcement->message, 95) }}</p>
+                <p class="text-gray-700 dark:text-gray-400">{{ Str::limit($announcement->brief, 50) }}</p>
             </a>
         @endforeach
     </div>

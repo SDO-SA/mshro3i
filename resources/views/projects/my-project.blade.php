@@ -12,6 +12,7 @@
             <x-user-info label="{{ __('app.project_name') }}">{{ $project->name }}</x-user-info>
             
             <x-user-info label="{{ __('app.project_field') }}"> {{ $project->projectfield }} </x-user-info>
+            <x-user-info label="{{ __('app.project_tech') }}"> {{ $project->projecttech }} </x-user-info>
         </div>    
         @endif
     

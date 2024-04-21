@@ -66,6 +66,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsTo(Department::class);
     }
 
+    public function college(): BelongsTo
+    {
+        return $this->belongsTo(College::class);
+    }
+
     protected function type(): Attribute
     {
         $type = null;
@@ -83,7 +88,7 @@ class User extends Authenticatable implements FilamentUser
         // }
 
         return Attribute::make(
-            get: fn() => $type
+            get: fn () => $type
         );
     }
 
