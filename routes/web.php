@@ -37,13 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/announcement/{id}', [AnnouncementController::class, 'show'])->name('showannouncement');
+    Route::get('/calendar', [AssignmentController::class, 'calendar'])->name('components.calendar');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/departments/{college}', [DepartmentController::class, 'getDepartment']);
 
 Route::prefix('assignments')
     ->middleware(['auth'])
-    ->group(function(){
+    ->group(function () {
         Route::get('', [AssignmentController::class, 'index'])->name('assignments.index');
         Route::get('{id}', [AssignmentController::class, 'show'])->name('assignments.show');
     });
@@ -79,4 +80,4 @@ Route::prefix('project')
         Route::post('/create-project', [ProjectController::class, 'createProject']);
     });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ResourceController extends Controller
@@ -12,6 +11,7 @@ class ResourceController extends Controller
     {
         $user = auth()->user();
         $resources = Resource::where('department_id', $user->department_id)->get();
+
         return view('resources.index', compact('resources'));
     }
 

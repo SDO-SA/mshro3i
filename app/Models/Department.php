@@ -30,4 +30,9 @@ class Department extends Model
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(Assignment::class);
+    }
 }

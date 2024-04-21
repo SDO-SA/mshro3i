@@ -4,10 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AssignmentResource\Pages;
 use App\Filament\Resources\AssignmentResource\Pages\ListAssignments;
-use App\Filament\Resources\AssignmentResource\RelationManagers;
 use App\Models\Assignment;
 use App\Models\Department;
-use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -17,8 +15,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AssignmentResource extends Resource
 {
@@ -29,6 +25,7 @@ class AssignmentResource extends Resource
     public static function form(Form $form): Form
     {
         $user = auth()->user();
+
         return $form
             ->schema([
                 TextInput::make('name'),

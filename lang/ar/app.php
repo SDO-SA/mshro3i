@@ -65,9 +65,14 @@ return [
     'project_name' => 'اسم المشروع',
     'abstract' => 'الفكرة المختصرة',
     'project_field' => 'مجالات المشروع',
+    'project_tech' => 'التقنيات المستعملة',
     'project_proposal' => 'إرفع مقترح المشروع',
 
     'create' => 'انشاء',
     'cancel' => 'تراجع',
+    'calendar' => 'التقويم',
 
+    'filament_notjoined' => 'لم ينضم',
+    'filament_groupmember' => 'عضو بمجموعة',
+    'filament_groupleader' => 'رئيس بمجموعة',
 ];

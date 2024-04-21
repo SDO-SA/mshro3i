@@ -60,7 +60,7 @@ class GroupController extends Controller
                 'name' => $request->name,
                 'department_id' => Department::find($user->department_id)->id,
                 'total_members' => 1,
-                'status' => GroupStatues::New ,
+                'status' => GroupStatues::New,
                 'supervisors' => implode(',', $request->supervisor),
             ]);
 
@@ -74,7 +74,7 @@ class GroupController extends Controller
                 ]);
 
             $validMembers = is_array($request->groupmembers) ? array_filter($request->groupmembers) : [];
-            if (!empty ($validMembers)) {
+            if (! empty($validMembers)) {
                 $group->total_members = $group->total_members + count($validMembers);
                 if ($group->total_members >= 4) {
                     $group->status = GroupStatues::Pending;
