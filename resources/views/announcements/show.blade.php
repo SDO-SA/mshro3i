@@ -5,7 +5,7 @@
         </h1>
         <div class="mt-2 flex justify-between items-center">
             <div class="flex py-5 text-base items-center">
-                <h3 class='font-bold'>{{$department->name_ar}}</h3>
+                <h3 class='font-bold'>{{$announcement->department->name_ar}}</h3>
             </div>
             <div class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3"

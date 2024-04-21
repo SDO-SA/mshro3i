@@ -5,8 +5,8 @@ namespace App\Filament\Resources\GroupResource\Pages;
 use App\Filament\Resources\GroupResource;
 use App\Models\Group;
 use Filament\Actions;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ListGroups extends ListRecords
 {

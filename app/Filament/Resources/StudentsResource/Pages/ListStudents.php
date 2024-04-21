@@ -18,6 +18,7 @@ class ListStudents extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
     public function departmentIdQuery(): Builder
     {
         $departmentId = auth()->user()->department_id;

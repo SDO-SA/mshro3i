@@ -25,6 +25,7 @@ class ProjectController extends Controller
             'abstract' => 'required|string|max:255',
             'projectfield' => 'required|array',
             'projectfield.*' => 'string',
+            'projecttech' => 'required|string|max:255',
             'attachment' => 'required|file|mimes:pdf|max:10240',
         ]);
 
@@ -36,6 +37,7 @@ class ProjectController extends Controller
             'group_id' => $user->group_id,
             'abstract' => $request->abstract,
             'projectfield' => implode(',', $request->projectfield),
+            'projecttech' => $request->projecttech,
             'attachment' => $attachmentPath,
             'status' => 'pending',
         ]);

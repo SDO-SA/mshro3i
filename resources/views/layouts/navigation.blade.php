@@ -1,3 +1,6 @@
+@php
+    $user = auth()->user();
+@endphp
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,16 +19,23 @@
                     {{ __('app.dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments')">
-                    {{ __('app.assignments') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('resources.index')" :active="request()->routeIs('resources.index')">
-                    {{ __('app.resources') }}
-                    </x-nav-link>
-                </div>
+                @if ($user->group_id != null)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments')">
+                        {{ __('app.assignments') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('resources.index')" :active="request()->routeIs('resources.index')">
+                        {{ __('app.resources') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('components.calendar')" :active="request()->routeIs('components.calendar')">
+                        {{ __('app.calendar') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -90,13 +100,19 @@
                 {{ __('app.dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
+            @if ($user->group_id != null)
+                <x-responsive-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
                     {{ __('app.assignments') }}
-            </x-responsive-nav-link>
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('resources.index')" :active="request()->routeIs('resources.index')">
-                    {{ __('app.resources') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('resources.index')" :active="request()->routeIs('resources.index')">
+                        {{ __('app.resources') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('components.calendar')" :active="request()->routeIs('components.calendar')">
+                    {{ __('app.calendar') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

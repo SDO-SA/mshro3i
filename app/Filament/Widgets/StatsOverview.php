@@ -13,9 +13,10 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         $user = auth()->user();
-        $students = User::where('department_id',$user->department_id)->count();
-        $supervisors = Supervisor::where('department_id',$user->department_id)->count();
-        $groups = Group::where('department_id',$user->department_id)->count();
+        $students = User::where('department_id', $user->department_id)->count();
+        $supervisors = Supervisor::where('department_id', $user->department_id)->count();
+        $groups = Group::where('department_id', $user->department_id)->count();
+
         return [
             Stat::make('الطلاب', $students),
             Stat::make('المشرفين', $supervisors),

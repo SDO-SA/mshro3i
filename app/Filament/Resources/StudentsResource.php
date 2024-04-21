@@ -4,9 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentsResource\Pages;
 use App\Filament\Resources\StudentsResource\Pages\ListStudents;
-use App\Filament\Resources\StudentsResource\RelationManagers;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,8 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class StudentsResource extends Resource
 {
@@ -35,7 +31,7 @@ class StudentsResource extends Resource
                     ->options([
                         'not_joined' => 'Not Joined',
                         'group_member' => 'Group Member',
-                        'group_leader' => 'Group Leader'
+                        'group_leader' => 'Group Leader',
                     ]),
             ]);
     }
@@ -43,6 +39,7 @@ class StudentsResource extends Resource
     public static function table(Table $table): Table
     {
         $currentUser = auth()->user();
+
         return $table
             ->query(app(ListStudents::class)->departmentIdQuery())
             ->columns([
@@ -50,17 +47,17 @@ class StudentsResource extends Resource
                 TextColumn::make('email')->sortable(),
                 TextColumn::make('university_id')->sortable(),
                 TextColumn::make('state')->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'not_joined' => 'info',
                         'group_member' => 'success',
                         'group_leader' => 'primary',
 
                     })->sortable()
                     ->label('State') // Add a custom label for clarity
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'not_joined' => 'Not Joined',
-                        'group_member' => 'Group Member',
-                        'group_leader' => 'Group Leader',
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'not_joined' => __('app.filament_notjoined'),
+                        'group_member' => __('app.filament_groupmember'),
+                        'group_leader' => __('app.filament_groupleader'),
                         default => $state,
                     }),
                 TextColumn::make('created_at')->label('Created At')->since(),
@@ -71,7 +68,7 @@ class StudentsResource extends Resource
                         'not_joined' => 'Not Joined',
                         'group_member' => 'Group Member',
                         'group_leader' => 'Group Leader',
-                    ])
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

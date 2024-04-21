@@ -33,6 +33,12 @@
             <x-input-error :messages="$errors->get('projectfield')" class="mt-2" />
         </div>
 
+        <div>
+            <x-required-input for="projecttech" :value="__('app.project_tech')" />
+            <x-text-input id="projecttech" class="block mt-1 w-full" type="text" name="projecttech" :value="old('projecttech')" required autofocus />
+            <x-input-error :messages="$errors->get('projecttech')" class="mt-2" />
+        </div>
+
         <!-- Attachment -->
         <div class="mt-4">
             <x-required-input for="attachment" :value="__('app.project_proposal')" />

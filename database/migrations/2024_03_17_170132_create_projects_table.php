@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id');
             $table->text('abstract');
             $table->text('projectfield');
+            $table->text('projecttech');
             $table->string('attachment');
             $table->string('status');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
