@@ -4,8 +4,8 @@
         {{ __('app.calendar') }}
         </h2>
     </x-slot>
-    <div class="px-20 mt-5">
-        <div id="calendar"></div>
+    <div class="px-10 mt-5">
+        <div id="calendar" class="text-gray-800 dark:text-gray-200"></div>
     </div>
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>

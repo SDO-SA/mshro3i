@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('supervisors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('university_id')->unique();
+            $table->integer('university_id')->unique()->nullable();
             $table->string('email')->unique();
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->string('password');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
