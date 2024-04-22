@@ -4,9 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Base\PermissionsList;
-use App\Base\RolesList;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
@@ -90,10 +87,5 @@ class User extends Authenticatable implements FilamentUser
         return Attribute::make(
             get: fn () => $type
         );
-    }
-
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->hasRole(RolesList::ROLE_STUDENT);
     }
 }
