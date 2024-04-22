@@ -55,7 +55,7 @@
             <div class="flex items-center">
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                               autocomplete="new-password" placeholder="{{__('app.enter_full_password')}}" />
-                <button class="ml-2 px-3 py-2 border border-gray-300
+                <button class="mt-1 mr-1 px-3 py-2 border border-gray-300
                          rounded-md bg-white text-gray-600" type="button" id="togglePassword">
                     <i class="fas fa-eye"></i>
                 </button>
@@ -134,13 +134,16 @@
     });
     $('#togglePassword').click(function () {
             const passwordInput = $('#password');
+            const confirmationInput = $('#password_confirmation');
             const icon = $(this).find('i');
  
             if (passwordInput.attr('type') === 'password') {
                 passwordInput.attr('type', 'text');
+                confirmationInput.attr('type', 'text');
                 icon.removeClass('fa-eye').addClass('fa-eye-slash');
             } else {
                 passwordInput.attr('type', 'password');
+                confirmationInput.attr('type', 'password');
                 icon.removeClass('fa-eye-slash').addClass('fa-eye');
             }
         });
