@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'email' => 'student@example.com',
             'university_id' => 442003532,
             'college_id' => 1,
-            'department_id' => Department::query()->get()->random()->id,
+            'department_id' => 1,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
         ]);
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'email' => 'student2@example.com',
             'university_id' => 443003532,
             'college_id' => 1,
-            'department_id' => Department::query()->get()->random()->id,
+            'department_id' => 2,
             'state' => StudentStates::NotJoined,
             'password' => Hash::make(111),
         ]);

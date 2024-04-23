@@ -51,6 +51,7 @@ class CommitteePanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->authGuard('committee');
     }
 }
