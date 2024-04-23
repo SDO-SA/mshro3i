@@ -13,6 +13,15 @@
             
             <x-user-info label="{{ __('app.project_field') }}"> {{ $project->projectfield }} </x-user-info>
             <x-user-info label="{{ __('app.project_tech') }}"> {{ $project->projecttech }} </x-user-info>
+            <x-user-info label="{{ __('app.state')  }}">
+            @if ($project->status == 'new')
+                <span class="bg-gray-100 text-gray-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ __('app.new') }}</span>
+            @elseif ($project->status == 'pending')
+                <span class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">{{ __('app.pending') }}</span>
+            @elseif ($project->status == 'confirmed')
+                <span class="bg-green-100 text-green-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{ __('app.confirmed') }}</span>
+            @endif
+        </x-user-info>
         </div>    
         @endif
     
