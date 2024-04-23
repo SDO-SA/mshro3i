@@ -1,5 +1,5 @@
 <x-app-layout>
-    <article class="col-span-4 md:col-span-3 mt-10 mx-auto py-5 w-full" style="max-width:700px">
+    <article class="mt-10 mx-auto p-5 max-w-3xl" >
         <h1 class="text-4xl font-bold text-right text-gray-800">
             {{$announcement->header}}
         </h1>

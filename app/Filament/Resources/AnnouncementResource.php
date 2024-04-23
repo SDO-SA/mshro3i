@@ -21,6 +21,8 @@ class AnnouncementResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
+    protected static ?string $navigationGroup = 'Deliverables';
+
     public static function form(Form $form): Form
     {
         $user = auth()->user();

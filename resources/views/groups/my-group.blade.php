@@ -4,7 +4,7 @@
 @endphp
 <div class="flex items-center justify-center p-6">
     <div
-        class="max-w-sm p-6 min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        class="max-w-sm min-w-80 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         
         {{-- Displaying Group name and status --}}
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $user->group->name }}
