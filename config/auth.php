@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'supervisors',
         ],
+        'committee' => [
+            'driver' => 'session',
+            'provider' => 'committee',
+        ],
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
         'supervisors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Supervisor::class,
+        ],
+
+        'committee' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Committee::class,
         ],
 
         // 'users' => [
