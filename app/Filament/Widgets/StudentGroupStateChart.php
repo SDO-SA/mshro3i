@@ -11,15 +11,26 @@ class StudentGroupStateChart extends ChartWidget
 
     protected function getData(): array
     {
-        $notjoined = Group::where('status', 'new')->count();
-        $groupmember = Group::where('status', 'pending')->count();
-        $groupleader = Group::where('status', 'confirmed')->count();
+        $user = auth()->user();
+        $departmentId = $user->department_id;
+
+        $newgroup = Group::where('status', 'new')
+                        ->where('department_id', $departmentId)
+                        ->count();
+
+        $pendinggroup = Group::where('status', 'pending')
+                            ->where('department_id', $departmentId)
+                            ->count();
+
+        $conifirmedgroup = Group::where('status', 'confirmed')
+                            ->where('department_id', $departmentId)
+                            ->count();
 
         return [
             'datasets' => [
                 [
                     'label' => 'User State',
-                    'data' => [$notjoined, $groupmember, $groupleader],
+                    'data' => [$newgroup, $pendinggroup, $conifirmedgroup],
                     'backgroundColor' => [
                         'rgb(255, 99, 132)',
                         'rgb(54, 162, 235)',

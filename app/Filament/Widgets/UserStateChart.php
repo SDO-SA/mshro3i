@@ -11,9 +11,20 @@ class UserStateChart extends ChartWidget
 
     protected function getData(): array
     {
-        $notjoined = User::where('state', 'not_joined')->count();
-        $groupmember = User::where('state', 'group_member')->count();
-        $groupleader = User::where('state', 'group_leader')->count();
+        $user = auth()->user();
+        $departmentId = $user->department_id;
+
+        $notjoined = User::where('state', 'not_joined')
+                        ->where('department_id', $departmentId)
+                        ->count();
+
+        $groupmember = User::where('state', 'group_member')
+                        ->where('department_id', $departmentId)
+                        ->count();
+
+        $groupleader = User::where('state', 'group_leader')
+                        ->where('department_id', $departmentId)
+                        ->count();
 
         return [
             'datasets' => [
