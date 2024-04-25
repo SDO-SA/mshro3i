@@ -5,6 +5,9 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
+        @if (count($groups) <= 0)
+            <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight text-center">No groups Available</h1>
+        @else
         <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1">
             @foreach ($groups as $group)
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,5 +47,6 @@
                 </div>
             @endforeach
         </div>
+        @endif
     </div>
 </x-app-layout>

@@ -3,8 +3,7 @@ $user = auth()->user();
 $announcements = App\Models\Announcement::where('department_id', $user->department_id)->latest()->take(3)->get();
 @endphp
 
-<div class="flex items-center justify-center p-6">
-    <div class="max-w-sm min-w-80 p-6 min-h-max bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="flex items-center flex-col p-6">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{__('app.announcements')}}</h5>
         @foreach($announcements as $announcement)
             <a href="{{route('showannouncement', $announcement->id)}}">
@@ -12,5 +11,4 @@ $announcements = App\Models\Announcement::where('department_id', $user->departme
                 <p class="text-gray-700 dark:text-gray-400">{{ Str::limit($announcement->brief, 50) }}</p>
             </a>
         @endforeach
-    </div>
 </div>
