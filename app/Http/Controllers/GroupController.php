@@ -89,7 +89,7 @@ class GroupController extends Controller
             }
         });
         $notification = array(
-            'message' => __('app.alert_create_group') ,
+            'message' => __('messages.create_group') ,
             'alert-type' => 'success'
         );
         return redirect(RouteServiceProvider::HOME)->with($notification);
@@ -120,7 +120,7 @@ class GroupController extends Controller
             }
         }
         $notification = array(
-            'message' => __('app.alert_joined_group') ,
+            'message' => __('messages.joined_group') ,
             'alert-type' => 'success'
         );
         return redirect(RouteServiceProvider::HOME)->with($notification);
@@ -166,7 +166,7 @@ class GroupController extends Controller
             }
         }
         $notification = array(
-            'message' => __('app.alert_left_group') ,
+            'message' => __('messages.left_group') ,
             'alert-type' => 'success'
             );
         return redirect(RouteServiceProvider::HOME)->with($notification);

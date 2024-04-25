@@ -1,6 +1,5 @@
 @php
     $user = auth()->user();
-    $group = App\Models\Group::where('id', $user->group_id)->first();
 @endphp
 <x-app-layout>
     <x-slot name="header">
@@ -11,7 +10,7 @@
 
     @include('profile.my-profile')
 
-    @if (isset($group->supervisor_id))
+    @if (isset($user->group->supervisor_id))
         @can('canSeeProjectInfo', App\Models\Project::class)
             @include('projects.my-project')
         @endcan
