@@ -101,7 +101,7 @@
                 {{ __('app.dashboard') }}
             </x-responsive-nav-link>
 
-            @if ($user->group_id != null)
+            @if ($supervisor != null)
                 <x-responsive-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
                     {{ __('app.assignments') }}
                 </x-responsive-nav-link>
