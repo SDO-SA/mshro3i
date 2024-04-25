@@ -32,10 +32,11 @@ class AssignmentResource extends Resource
             ->schema([
                 TextInput::make('name'),
                 TextInput::make('points'),
-                RichEditor::make('deliverables')->columnSpanFull(),
+                RichEditor::make('deliverables')->columnSpanFull()->required(),
                 DateTimePicker::make('due_date')
                     ->suffix('End Date')
-                    ->seconds(false),
+                    ->seconds(false)
+                    ->required(),
                 Select::make('department_id')
                     ->label('Department')
                     ->default($user->department_id)

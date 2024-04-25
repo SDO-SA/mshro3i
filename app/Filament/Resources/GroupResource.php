@@ -44,7 +44,8 @@ class GroupResource extends Resource
                 Select::make('supervisor_id')
                     ->label('Assign Supervisor')
                     ->options(Supervisor::where('department_id', $user->department_id)->pluck('name', 'id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->required(),
                 TextInput::make('group_members')->label('Members')->disabled()->placeholder(implode(', ', $groupMembers)),
                 Radio::make('status')
                     ->label('Status')

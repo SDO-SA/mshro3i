@@ -70,4 +70,10 @@ return [
     'cancel' => 'Cancel',
 
     'calendar' => 'Calendar',
+
+    'alert_joined_group' => 'Joined Group',
+    'alert_left_group' => 'Left Group',
+    'alert_create_group' => 'Group Created',
+    'alert_create_project' => 'Project Created',
+    'alert_password_updated' => 'Password Updated',
 ];

@@ -75,4 +75,10 @@ return [
     'filament_notjoined' => 'لم ينضم',
     'filament_groupmember' => 'عضو بمجموعة',
     'filament_groupleader' => 'رئيس بمجموعة',
+
+    'alert_joined_group' => 'تم الانضمام للمجموعة',
+    'alert_left_group' => 'تم مغادرة المجموعة',
+    'alert_create_group' => 'تم انشاء المجموعة',
+    'alert_create_project' => 'تم انشاء المشروع',
+    'alert_password_updated' => 'تم تحديث كلمة المرور',
 ];

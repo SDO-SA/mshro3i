@@ -88,8 +88,12 @@ class GroupController extends Controller
                     ]);
             }
         });
+        $notification = [
+            'message' => __('messages.create_group'),
+            'alert-type' => 'success',
+        ];
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
     public function joinGroup($group_id)
@@ -116,8 +120,12 @@ class GroupController extends Controller
                 $group->update(['status' => GroupStatues::Pending]);
             }
         }
+        $notification = [
+            'message' => __('messages.joined_group'),
+            'alert-type' => 'success',
+        ];
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
     public function leaveGroup()
@@ -159,8 +167,12 @@ class GroupController extends Controller
                 }
             }
         }
+        $notification = [
+            'message' => __('messages.left_group'),
+            'alert-type' => 'success',
+        ];
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
     public function show(Request $request)
