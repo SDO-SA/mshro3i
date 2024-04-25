@@ -38,29 +38,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         @if (Session::has('message'))
+            toastr.options = {
+                "positionClass" : "toast-bottom-center",
+                "rtl" : true,
+                "timeOut" : "2500",
+                "progressBar" : true,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
 
-                    toastr.options.timeOut = 10000;
                     toastr.info("{{ Session::get('message') }}");
 
                     break;
                 case 'success':
 
-                    toastr.options.timeOut = 10000;
                     toastr.success("{{ Session::get('message') }}");
 
                     break;
                 case 'warning':
 
-                    toastr.options.timeOut = 10000;
                     toastr.warning("{{ Session::get('message') }}");
 
                     break;
                 case 'error':
 
-                    toastr.options.timeOut = 10000;
                     toastr.error("{{ Session::get('message') }}");
                     
                     break;
