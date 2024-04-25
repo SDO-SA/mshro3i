@@ -41,10 +41,11 @@ class ProjectController extends Controller
             'attachment' => $attachmentPath,
             'status' => 'pending',
         ]);
-        $notification = array(
-            'message' => __('app.alert_create_project') ,
-            'alert-type' => 'success'
-        );
+        $notification = [
+            'message' => __('app.alert_create_project'),
+            'alert-type' => 'success',
+        ];
+
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 }

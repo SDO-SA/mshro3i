@@ -15,16 +15,16 @@ class UserStateChart extends ChartWidget
         $departmentId = $user->department_id;
 
         $notjoined = User::where('state', 'not_joined')
-                        ->where('department_id', $departmentId)
-                        ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         $groupmember = User::where('state', 'group_member')
-                        ->where('department_id', $departmentId)
-                        ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         $groupleader = User::where('state', 'group_leader')
-                        ->where('department_id', $departmentId)
-                        ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         return [
             'datasets' => [

@@ -1,5 +1,6 @@
 @php
     $user = auth()->user();
+    $supervisor = $user->group && $user->group->supervisor_id;
 @endphp
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
@@ -19,7 +20,7 @@
                     {{ __('app.dashboard') }}
                     </x-nav-link>
                 </div>
-                @if ($user->group_id != null)
+                @if ($supervisor != null)
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
                         {{ __('app.assignments') }}

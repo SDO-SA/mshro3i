@@ -7,6 +7,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,8 @@ Route::prefix('assignments')
     ->group(function () {
         Route::get('', [AssignmentController::class, 'index'])->name('assignments.index');
         Route::get('{id}', [AssignmentController::class, 'show'])->name('assignments.show');
+        Route::get('submit/{id}', [SubmissionController::class, 'form'])->name('assignments.form');
+        Route::post('submit/{id}', [SubmissionController::class, 'submit'])->name('assignments.submit');
     });
 
 Route::prefix('resources')

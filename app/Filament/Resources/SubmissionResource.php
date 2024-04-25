@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProjectResource\Pages;
-use App\Filament\Resources\ProjectResource\Pages\ListProjects;
-use App\Models\Project;
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Resources\SubmissionResource\Pages;
+use App\Filament\Resources\SubmissionResource\Pages\ListSubmissions;
+use App\Models\Submission;
 use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,27 +14,22 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProjectResource extends Resource
+class SubmissionResource extends Resource
 {
-    protected static ?string $model = Project::class;
+    protected static ?string $model = Submission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Users';
-
     public static function form(Form $form): Form
     {
-
         return $form
             ->schema([
                 TextInput::make('name')->disabled(),
-                TextInput::make('group_name')->label('Group')->disabled()->placeholder(fn (Project $project) => $project->group->name),
-                RichEditor::make('abstract')->columnSpanFull(),
-                // FileUpload::make('attachment')
-                //     ->disk('public')
-                //     ->columnSpanFull(),
-                TextInput::make('projectfield')->disabled(),
-                TextInput::make('projecttech')->disabled(),
+                TextInput::make('group_name')->label('Group')->disabled()->placeholder(fn (Submission $submission) => $submission->group->name),
+                TextInput::make('submitter')->disabled(),
+                TextInput::make('notes')->disabled(),
+                Textarea::make('feedback')->columnSpanFull(),
+                TextInput::make('points')->required(),
                 Radio::make('status')
                     ->label('Status')
                     ->options([
@@ -50,13 +44,15 @@ class ProjectResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(app(ListProjects::class)->departmentIdQuery())
+            ->query(app(ListSubmissions::class)->departmentIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
+                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Submission $submission) => $submission->group->name),
+                TextColumn::make('submitter')->sortable(),
+                TextColumn::make('supervisor')->label('Supervisor')->getStateUsing(fn (Submission $submission) => $submission->group->supervisor->name),
                 TextColumn::make('status')->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'pending' => 'primary',
+                        'pending' => 'warning',
                         'approved' => 'success',
                         'declined' => 'danger',
 
@@ -66,7 +62,6 @@ class ProjectResource extends Resource
                         'approved' => __('app.confirmed'),
                         default => $state,
                     }),
-                TextColumn::make('created_at')->label('Created At')->since(),
             ])
             ->filters([
                 //
@@ -92,9 +87,9 @@ class ProjectResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProjects::route('/'),
-            'create' => Pages\CreateProject::route('/create'),
-            'edit' => Pages\EditProject::route('/{record}/edit'),
+            'index' => Pages\ListSubmissions::route('/'),
+            'create' => Pages\CreateSubmission::route('/create'),
+            'edit' => Pages\EditSubmission::route('/{record}/edit'),
         ];
     }
 }

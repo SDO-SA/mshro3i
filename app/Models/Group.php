@@ -34,4 +34,9 @@ class Group extends Model
     {
         return $this->belongsTo(Supervisor::class);
     }
+
+    public function submissions(): HasMany
+    {
+        return $this->hasMany(Submission::class);
+    }
 }

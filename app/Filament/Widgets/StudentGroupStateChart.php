@@ -15,16 +15,16 @@ class StudentGroupStateChart extends ChartWidget
         $departmentId = $user->department_id;
 
         $newgroup = Group::where('status', 'new')
-                        ->where('department_id', $departmentId)
-                        ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         $pendinggroup = Group::where('status', 'pending')
-                            ->where('department_id', $departmentId)
-                            ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         $conifirmedgroup = Group::where('status', 'confirmed')
-                            ->where('department_id', $departmentId)
-                            ->count();
+            ->where('department_id', $departmentId)
+            ->count();
 
         return [
             'datasets' => [

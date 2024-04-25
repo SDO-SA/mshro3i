@@ -88,10 +88,11 @@ class GroupController extends Controller
                     ]);
             }
         });
-        $notification = array(
-            'message' => __('messages.create_group') ,
-            'alert-type' => 'success'
-        );
+        $notification = [
+            'message' => __('messages.create_group'),
+            'alert-type' => 'success',
+        ];
+
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
@@ -119,10 +120,11 @@ class GroupController extends Controller
                 $group->update(['status' => GroupStatues::Pending]);
             }
         }
-        $notification = array(
-            'message' => __('messages.joined_group') ,
-            'alert-type' => 'success'
-        );
+        $notification = [
+            'message' => __('messages.joined_group'),
+            'alert-type' => 'success',
+        ];
+
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
@@ -165,10 +167,11 @@ class GroupController extends Controller
                 }
             }
         }
-        $notification = array(
-            'message' => __('messages.left_group') ,
-            'alert-type' => 'success'
-            );
+        $notification = [
+            'message' => __('messages.left_group'),
+            'alert-type' => 'success',
+        ];
+
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 

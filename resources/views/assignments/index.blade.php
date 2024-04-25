@@ -14,6 +14,7 @@
                         <th scope="col" class="px-2 py-3">الأسم</th>
                         <th scope="col" class="px-2 py-3">الدرجات</th>
                         <th scope="col" class="px-2 py-3">تاريخ الإنشاء</th>
+                        <th scope="col">&nbsp;&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,7 @@
                             <td class="px-2 py-4"><a href="{{route('assignments.show', $assignment->id)}}">{{$assignment->name}}</a></td>
                             <td class="px-2 py-4">{{$assignment->points}}</td>
                             <td class="px-2 py-4">{{$assignment->created_at->diffForHumans()}}</td>
+                            <td class="px-2 py-4"><a href="{{route('assignments.form', $assignment->id)}}">تسليم</a></td>
                         </tr>
                     @endforeach
                 </tbody>
