@@ -43,6 +43,7 @@ return [
     'group' => 'المجموعة',
     'group_state' => 'لست بمجموعة',
     'no_group' => 'ليس لديك مجموعة!',
+    'no_groups_available' => 'لاتوجد مجموعات',
     'create_group' => 'انشئ مجموعة',
     'browse_groups' => 'تصفح المجموعات',
 
@@ -81,4 +82,10 @@ return [
     'alert_create_group' => 'تم انشاء المجموعة',
     'alert_create_project' => 'تم انشاء المشروع',
     'alert_password_updated' => 'تم تحديث كلمة المرور',
+    'alert_confirmation' => 'تأكيد',
+    'alert_warning' => 'تحذير',
+    'alert_join_confirmation' => 'هل تريد الانضمام',
+    'alert_leaving_warning' => 'أنت على وشك مغادرة مجموعتك',
+    'alert_leave_button' => 'مغادرة',
+    'alert_cancel_button' => 'إغلاق',
 ];

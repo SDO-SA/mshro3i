@@ -41,6 +41,7 @@ return [
     'group' => 'Group',
     'group_state' => 'No Group',
     'no_group' => "You don't have a Group yet!",
+    'no_groups_available' => 'No Groups Available',
     'create_group' => 'Create Group',
     'browse_groups' => 'Browse Groups',
 
@@ -76,4 +77,10 @@ return [
     'alert_create_group' => 'Group Created',
     'alert_create_project' => 'Project Created',
     'alert_password_updated' => 'Password Updated',
+    'alert_confirmation' => 'Confirmation',
+    'alert_warning' => 'Warning',
+    'alert_join_confirmation' => 'Are you sure',
+    'alert_leaving_warning' => 'You are about to leave your group',
+    'alert_leave_button' => 'Leave',
+    'alert_cancel_button' => 'Cancel',
 ];
