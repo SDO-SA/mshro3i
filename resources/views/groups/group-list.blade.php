@@ -43,11 +43,11 @@
                             @if ($group->total_members >= 4)
                             @else
                                 <button class="btn btn-neutral"
-                                    onclick="my_modal_1.showModal()">{{ __('app.join') }}</button>
-                                <dialog id="my_modal_1" class="modal">
+                                    onclick="my_modal_{{ $group->id }}.showModal()">{{ __('app.join') }}</button>
+                                <dialog id="my_modal_{{ $group->id }}" class="modal">
                                     <div class="modal-box">
                                         <h3 class="font-bold text-lg">{{__('app.alert_confirmation')}}!</h3>
-                                        <p class="py-4">{{ __('app.alert_join_confirmation') }}</p>
+                                        <p class="py-4">{{ __('app.alert_join_confirmation') }} {{ $group->name }}</p>
                                         <div class="modal-action">
                                             <form method="dialog">
                                                 <!-- if there is a button in form, it will close the modal -->

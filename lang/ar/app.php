@@ -84,7 +84,7 @@ return [
     'alert_password_updated' => 'تم تحديث كلمة المرور',
     'alert_confirmation' => 'تأكيد',
     'alert_warning' => 'تحذير',
-    'alert_join_confirmation' => 'هل تريد الانضمام',
+    'alert_join_confirmation' => 'هل تريد الانضمام لمجموعة',
     'alert_leaving_warning' => 'أنت على وشك مغادرة مجموعتك',
     'alert_leave_button' => 'مغادرة',
     'alert_cancel_button' => 'إغلاق',

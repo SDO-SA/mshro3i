@@ -41,8 +41,7 @@
     @if ($group->status == 'confirmed')
     @else
         <div class="flex justify-end">
-            <button class="btn btn-error"
-            onclick="my_modal_1.showModal()">{{ __('app.leave_group') }}</button>  
+            <button class="btn btn-error" onclick="my_modal_1.showModal()">{{ __('app.leave_group') }}</button>  
         </div>
         
         <dialog id="my_modal_1" class="modal">
