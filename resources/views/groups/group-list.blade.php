@@ -53,12 +53,12 @@
                                                 <!-- if there is a button in form, it will close the modal -->
                                                 <button class="btn">{{ __('app.alert_cancel_button') }}</button>
                                                 <button class="btn btn-success" type="submit"
-                                                    form="join-group">{{ __('app.join') }}</button>
+                                                    form="join-group-{{ $group->id }}">{{ __('app.join') }}</button>
                                             </form>
                                         </div>
                                     </div>
                                 </dialog>
-                                <form id="join-group" action="{{ route('joingroup', ['group_id' => $group->id]) }}"
+                                <form id="join-group-{{ $group->id }}" action="{{ route('joingroup', ['group_id' => $group->id]) }}"
                                     method="POST">
                                     @csrf
                                 </form>
