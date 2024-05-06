@@ -5,7 +5,7 @@
         <!-- Name -->
         <div>
             <x-required-input for="name" :value="__('app.group_name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus placeholder="ادخل اسم المجموعة" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -17,6 +17,7 @@
                     <option value="{{ $name }}">{{ $name }}</option>
                 @endforeach
             </select>
+            <x-input-label :value="__('app.supervisor_limit')"/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 

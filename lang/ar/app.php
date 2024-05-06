@@ -56,6 +56,7 @@ return [
     'group_leader' => 'رئيس المجموعة',
     'group_members' => 'أعضاء المجموعة',
     'group_members_limit' => 'ثلاثة كحد اقصى',
+    'supervisor_limit' => 'اختر مشرفين مقترحين ثلاثة كحد اقصى',
 
     'group_name' => 'اسم المجموعة',
     'group_supervisor' => 'مشرف المجموعة',

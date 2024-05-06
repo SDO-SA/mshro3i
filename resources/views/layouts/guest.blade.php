@@ -46,7 +46,7 @@
         <script>
             $(document).ready(function() {
                 $('#supervisor').select2({
-                    placeholder: 'Search for Supervisor',
+                    placeholder: 'ابحث عن مشرفين',
                     allowClear: true,
                 }).on('select2:select', function(e) {
                     var selectedMembers = $(this).val();
@@ -57,7 +57,7 @@
                 });
 
                 $('#groupmembers').select2({
-                    placeholder: 'Search for Group members',
+                    placeholder: 'ابحث عن اعضاء للمجموعة',
                     allowClear: true,
                 }).on('select2:select', function(e) {
                     var selectedMembers = $(this).val();

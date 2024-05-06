@@ -13,6 +13,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'department_id',
+        'supervisor_id',
         'group_id',
         'abstract',
         'projectfield',
@@ -29,5 +30,10 @@ class Project extends Model
     public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function supervisor(): BelongsTo
+    {
+        return $this->belongsTo(Supervisor::class);
     }
 }

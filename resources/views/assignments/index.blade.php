@@ -25,7 +25,9 @@
                             <td class="px-2 py-4"><a href="{{route('assignments.show', $assignment->id)}}">{{$assignment->name}}</a></td>
                             <td class="px-2 py-4">{{$assignment->points}}</td>
                             <td class="px-2 py-4">{{$assignment->created_at->diffForHumans()}}</td>
-                            <td class="px-2 py-4"><a href="{{route('assignments.form', $assignment->id)}}">تسليم</a></td>
+                            @if (auth()->user()->state === 'group_leader')
+                                <td class="px-2 py-4"><a href="{{route('assignments.form', $assignment->id)}}">تسليم</a></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

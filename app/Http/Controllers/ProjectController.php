@@ -34,6 +34,7 @@ class ProjectController extends Controller
         Project::create([
             'name' => $request->name,
             'department_id' => $user->department_id,
+            'supervisor_id' => $user->group->supervisor_id,
             'group_id' => $user->group_id,
             'abstract' => $request->abstract,
             'projectfield' => implode(',', $request->projectfield),
