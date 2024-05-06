@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SubmissionResource\Pages;
-use App\Filament\Resources\SubmissionResource\Pages\ListSubmissions;
+use App\Filament\Resources\SupervisorSubmissionResource\Pages;
+use App\Filament\Resources\SupervisorSubmissionResource\Pages\ListSupervisorSubmissions;
 use App\Models\Submission;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Textarea;
@@ -14,13 +14,11 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class SubmissionResource extends Resource
+class SupervisorSubmissionResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Deliverables';
 
     public static function form(Form $form): Form
     {
@@ -46,7 +44,7 @@ class SubmissionResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(app(ListSubmissions::class)->departmentIdQuery())
+            ->query(app(ListSupervisorSubmissions::class)->supervisorIdQuery())
             ->columns([
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Submission $submission) => $submission->group->name),
@@ -70,7 +68,6 @@ class SubmissionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -89,9 +86,9 @@ class SubmissionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSubmissions::route('/'),
-            'create' => Pages\CreateSubmission::route('/create'),
-            'edit' => Pages\EditSubmission::route('/{record}/edit'),
+            'index' => Pages\ListSupervisorSubmissions::route('/'),
+            'create' => Pages\CreateSupervisorSubmission::route('/create'),
+            'edit' => Pages\EditSupervisorSubmission::route('/{record}/edit'),
         ];
     }
 }

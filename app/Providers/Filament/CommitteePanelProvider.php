@@ -2,6 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\AnnouncementResource;
+use App\Filament\Resources\AssignmentResource;
+use App\Filament\Resources\GroupResource;
+use App\Filament\Resources\ProjectResource;
+use App\Filament\Resources\ResourceResource;
+use App\Filament\Resources\StudentsResource;
+use App\Filament\Resources\SubmissionResource;
+use App\Filament\Resources\SupervisorsResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -29,10 +37,18 @@ class CommitteePanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Indigo,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+            ])
+            ->resources([
+                AssignmentResource::class,
+                AnnouncementResource::class,
+                ResourceResource::class,
+                SubmissionResource::class,
+                GroupResource::class,
+                ProjectResource::class,
+                SupervisorsResource::class,
+                StudentsResource::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

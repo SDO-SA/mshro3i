@@ -64,9 +64,6 @@ class GroupController extends Controller
                 'supervisors' => implode(',', $request->supervisor),
             ]);
 
-            // Group::where('id', $group->id)
-            //     ->update(['supervisor_id' => $request->supervisor]);
-
             User::where('id', $user->id)
                 ->update([
                     'state' => StudentStates::GroupLeader,

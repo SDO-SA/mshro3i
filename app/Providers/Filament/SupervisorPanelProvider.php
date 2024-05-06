@@ -3,9 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\SupervisorRegister;
-use App\Filament\Resources\AssignmentResource;
-use App\Filament\Resources\GroupResource;
-use App\Filament\Resources\ProjectResource;
+use App\Filament\Resources\SupervisorAssignmentResource;
+use App\Filament\Resources\SupervisorGroupResource;
+use App\Filament\Resources\SupervisorProjectResource;
+use App\Filament\Resources\SupervisorSubmissionResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -38,9 +39,10 @@ class SupervisorPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->resources([
-                AssignmentResource::class,
-                GroupResource::class,
-                ProjectResource::class,
+                SupervisorGroupResource::class,
+                SupervisorProjectResource::class,
+                SupervisorSubmissionResource::class,
+                SupervisorAssignmentResource::class,
 
             ])
             ->discoverWidgets(in: app_path('Filament/Supervisor/Widgets'), for: 'App\\Filament\\Supervisor\\Widgets')

@@ -4,8 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentsResource\Pages;
 use App\Filament\Resources\StudentsResource\Pages\ListStudents;
+use App\Models\Group;
 use App\Models\User;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -24,17 +26,26 @@ class StudentsResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $user = auth()->user();
+
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('university_id')->numeric()->unique(ignoreRecord: true),
-                TextInput::make('email')->unique(ignoreRecord: true),
+                TextInput::make('name')->disabled(),
+                TextInput::make('university_id')->disabled(),
+                TextInput::make('group_name')->label('Group')->disabled()->placeholder(fn (User $user) => $user->group->name ?? ''),
+                TextInput::make('email')->disabled(),
+                Select::make('group_id')
+                    ->label('Assign Group')
+                    ->options(Group::where('department_id', $user->department_id)->pluck('name', 'id'))
+                    ->searchable()
+                    ->required(),
                 Radio::make('state')
                     ->options([
-                        'not_joined' => 'Not Joined',
-                        'group_member' => 'Group Member',
-                        'group_leader' => 'Group Leader',
-                    ]),
+                        'group_member' => __('app.filament_groupmember'),
+                        'group_leader' => __('app.filament_groupleader'),
+                    ])->inline()
+                    ->inlineLabel(false)
+                    ->required(),
             ]);
     }
 

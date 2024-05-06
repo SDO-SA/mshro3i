@@ -46,6 +46,11 @@ class Supervisor extends Authenticatable implements FilamentUser
         return $this->hasMany(Group::class);
     }
 
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
     protected function type(): Attribute
     {
         $type = null;

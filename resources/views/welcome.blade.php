@@ -21,7 +21,7 @@
                 </div>
                 <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                     <div class="flex justify-center mb-5">
-                        <x-application-logo class="h-20"/>
+                        <x-application-logo class="h-32"/>
                     </div>
                     <div class="text-center">
                       <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">منصتنا ليست فقط منصة</h1>

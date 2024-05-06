@@ -10,6 +10,12 @@
         </div>
 
         <div class="mt-4">
+            <x-required-input for="projecttech" :value="__('app.project_tech')" />
+            <x-text-input id="projecttech" class="block mt-1 w-full" type="text" name="projecttech" :value="old('projecttech')" required autofocus />
+            <x-input-error :messages="$errors->get('projecttech')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
             <x-required-input for="abstract" :value="__('app.abstract')" />
             <textarea id="abstract" class="block mt-1 w-full 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm'" name="abstract" required autofocus>{{ old('abstract') }}</textarea>
             <x-input-error :messages="$errors->get('abstract')" class="mt-2" />
@@ -31,12 +37,6 @@
                 </label>
             </div>
             <x-input-error :messages="$errors->get('projectfield')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-required-input for="projecttech" :value="__('app.project_tech')" />
-            <x-text-input id="projecttech" class="block mt-1 w-full" type="text" name="projecttech" :value="old('projecttech')" required autofocus />
-            <x-input-error :messages="$errors->get('projecttech')" class="mt-2" />
         </div>
 
         <!-- Attachment -->
