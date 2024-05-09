@@ -18,7 +18,7 @@ class SubmissionController extends Controller
 
     public function submit(Request $request, $assignment_id)
     {
-        // $this->authorize('canSubmitAssignment', Submission::class);
+        $this->authorize('canSubmitAssignment', Submission::class);
         $user = auth()->user();
         $assignment = Assignment::find($assignment_id);
 

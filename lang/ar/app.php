@@ -46,6 +46,11 @@ return [
     'no_groups_available' => 'لاتوجد مجموعات',
     'create_group' => 'انشئ مجموعة',
     'browse_groups' => 'تصفح المجموعات',
+    'points' => 'الدرجات',
+    'created_at' => 'تاريخ الانشاء',
+    'title' => 'العنوان',
+    'assignment_file_upload' => 'ملف الواجب',
+    'assignment_note' => 'ملاحظات',
 
     'groups' => 'المجموعات',
     'new' => 'جديد',

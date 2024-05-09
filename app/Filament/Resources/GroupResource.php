@@ -21,9 +21,13 @@ class GroupResource extends Resource
 {
     protected static ?string $model = Group::class;
 
+    protected static ?string $pluralModelLabel = 'المجموعات';
+
+    protected static ?string $modelLabel = 'مجموعة';
+
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationGroup = 'Users';
+    protected static ?string $navigationGroup = 'إدارة';
 
     public static function form(Form $form): Form
     {
@@ -105,6 +109,11 @@ class GroupResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

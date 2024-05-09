@@ -18,6 +18,10 @@ class SupervisorSubmissionResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
+    protected static ?string $pluralModelLabel = 'التسليمات';
+
+    protected static ?string $modelLabel = 'تسليم';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -81,6 +85,11 @@ class SupervisorSubmissionResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

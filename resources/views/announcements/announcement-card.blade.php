@@ -3,7 +3,7 @@ $user = auth()->user();
 $announcements = App\Models\Announcement::where('department_id', $user->department_id)->latest()->take(3)->get();
 @endphp
 
-<div class="flex items-center flex-col p-6">
+<div class="flex flex-col p-6">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{__('app.announcements')}}</h5>
         @foreach($announcements as $announcement)
             <a href="{{route('showannouncement', $announcement->id)}}">

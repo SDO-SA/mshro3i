@@ -1,13 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb">
             {{ __('app.groups') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
-        @if (count($groups) <= 0)
-            <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight text-center">{{__('app.no_groups_available')}}</h1>
-        @else
+    @if (count($groups) <= 0)
+        <div class="flex items-center justify-center h-96 mt-44">
+            <div class="flex flex-col items-center justify-center">
+                <img src="{{ asset('img/nogroups.svg') }}" alt="" id="nogroup">
+                <h1 class="font-semibold text-2xl text-gray-800 sm:text-4xl dark:text-gray-200 leading-tight">{{__('app.no_groups_available')}}</h1>
+            </div>
+        </div>
+    @else
+        <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1">
                 @foreach ($groups as $group)
                     <div
@@ -42,8 +47,8 @@
                         <div class="flex items-center justify-end mt-4">
                             @if ($group->total_members >= 4)
                             @else
-                                <button class="btn btn-neutral"
-                                    onclick="my_modal_{{ $group->id }}.showModal()">{{ __('app.join') }}</button>
+                                <x-primary-button class="h-12"
+                                    onclick="my_modal_{{ $group->id }}.showModal()">{{ __('app.join') }}</x-primary-button>
                                 <dialog id="my_modal_{{ $group->id }}" class="modal">
                                     <div class="modal-box">
                                         <h3 class="font-bold text-lg">{{__('app.alert_confirmation')}}!</h3>
@@ -52,8 +57,8 @@
                                             <form method="dialog">
                                                 <!-- if there is a button in form, it will close the modal -->
                                                 <button class="btn">{{ __('app.alert_cancel_button') }}</button>
-                                                <button class="btn btn-success" type="submit"
-                                                    form="join-group-{{ $group->id }}">{{ __('app.join') }}</button>
+                                                <x-primary-button class="h-12" type="submit"
+                                                    form="join-group-{{ $group->id }}">{{ __('app.join') }}</x-primary-button>
                                             </form>
                                         </div>
                                     </div>
@@ -67,6 +72,6 @@
                     </div>
                 @endforeach
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
 </x-app-layout>
