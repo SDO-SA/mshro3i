@@ -19,9 +19,13 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
+    protected static ?string $pluralModelLabel = 'المشاريع';
+
+    protected static ?string $modelLabel = 'مشروع';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Users';
+    protected static ?string $navigationGroup = 'إدارة';
 
     public static function form(Form $form): Form
     {
@@ -87,6 +91,11 @@ class ProjectResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

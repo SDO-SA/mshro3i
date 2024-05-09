@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GroupResource;
 use App\Models\Department;
 use App\Models\Group;
 use App\Models\Supervisor;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class GroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create Group Form
      */
     public function createForm()
     {
@@ -34,6 +33,9 @@ class GroupController extends Controller
         return view('groups.groupform', compact('groupMembers', 'supervisors'));
     }
 
+    /**
+     * Display list of groups with same department
+     */
     public function list()
     {
         $this->authorize('canCreateNewGroup', Group::class);
@@ -45,7 +47,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a New Group Record in Database
      */
     public function createNewGroup(Request $request)
     {
@@ -93,6 +95,9 @@ class GroupController extends Controller
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
+    /**
+     * Join Group Function
+     */
     public function joinGroup($group_id)
     {
         $this->authorize('canJoinGroup', Group::class);
@@ -125,6 +130,9 @@ class GroupController extends Controller
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
+    /**
+     * Leave Group Function
+     */
     public function leaveGroup()
     {
         $user = auth()->user();
@@ -170,18 +178,5 @@ class GroupController extends Controller
         ];
 
         return redirect(RouteServiceProvider::HOME)->with($notification);
-    }
-
-    public function show(Request $request)
-    {
-        $this->authorize('canShowMyGroup', Group::class);
-        $user = auth()->user();
-        $group = Group::find($user->group_id);
-
-        return response()->json([
-            'message' => '200',
-            'role' => $user->state,
-            'my-group' => new GroupResource($group),
-        ]);
     }
 }

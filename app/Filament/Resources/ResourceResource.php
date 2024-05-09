@@ -19,9 +19,13 @@ class ResourceResource extends Resource
 {
     protected static ?string $model = ResourceModel::class;
 
+    protected static ?string $pluralModelLabel = 'المصادر';
+
+    protected static ?string $modelLabel = 'مصدر';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Deliverables';
+    protected static ?string $navigationGroup = 'المعطيات';
 
     public static function form(Form $form): Form
     {

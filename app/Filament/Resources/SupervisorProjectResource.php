@@ -15,6 +15,10 @@ class SupervisorProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
+    protected static ?string $pluralModelLabel = 'المشاريع';
+
+    protected static ?string $modelLabel = 'مشروع';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -64,6 +68,11 @@ class SupervisorProjectResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array
