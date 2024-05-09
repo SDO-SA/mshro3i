@@ -20,9 +20,13 @@ class StudentsResource extends Resource
 {
     protected static ?string $model = User::class;
 
+    protected static ?string $pluralModelLabel = 'الطلاب';
+
+    protected static ?string $modelLabel = 'طالب';
+
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'Users';
+    protected static ?string $navigationGroup = 'إدارة';
 
     public static function form(Form $form): Form
     {
@@ -98,6 +102,11 @@ class StudentsResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

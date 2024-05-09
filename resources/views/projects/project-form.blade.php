@@ -25,15 +25,15 @@
             <x-required-input for="projectfield" :value="__('app.project_field')" />
             <div class="flex flex-wrap mt-2 space-x-2">
                 <label for="education" class="checkbox-label block font-medium text-sm text-gray-700 dark:text-gray-300">
-                    <input id="education" class="mr-1" type="checkbox" name="projectfield[]" value="Education" {{ in_array('Education', old('projectfield', [])) ? 'checked' : '' }}>Education
+                    <input id="education" class="mr-1" type="checkbox" name="projectfield[]" value="Education" {{ in_array('Education', old('projectfield', [])) ? 'checked' : '' }}>التعليم 
                 </label>
         
                 <label for="health" class="checkbox-label block font-medium text-sm text-gray-700 dark:text-gray-300 ">
-                    <input id="health" class="mr-1" type="checkbox" name="projectfield[]" value="Health" {{ in_array('Health', old('projectfield', [])) ? 'checked' : '' }}>Health
+                    <input id="health" class="mr-1" type="checkbox" name="projectfield[]" value="Health" {{ in_array('Health', old('projectfield', [])) ? 'checked' : '' }}>الصحة 
                 </label>
         
                 <label for="science" class="checkbox-label block font-medium text-sm text-gray-700 dark:text-gray-300">
-                    <input id="science" class="mr-1" type="checkbox" name="projectfield[]" value="Science" {{ in_array('Science', old('projectfield', [])) ? 'checked' : '' }}>Science
+                    <input id="science" class="mr-1" type="checkbox" name="projectfield[]" value="Science" {{ in_array('Science', old('projectfield', [])) ? 'checked' : '' }}>العلوم
                 </label>
             </div>
             <x-input-error :messages="$errors->get('projectfield')" class="mt-2" />

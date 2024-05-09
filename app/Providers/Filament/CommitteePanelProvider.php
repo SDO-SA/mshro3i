@@ -16,7 +16,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -35,7 +34,7 @@ class CommitteePanelProvider extends PanelProvider
             ->path('committee')
             ->login()
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => '#3f62ba',
             ])
             ->pages([
                 Pages\Dashboard::class,

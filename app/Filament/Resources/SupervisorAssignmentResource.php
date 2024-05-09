@@ -18,6 +18,10 @@ class SupervisorAssignmentResource extends Resource
 {
     protected static ?string $model = Assignment::class;
 
+    protected static ?string $pluralModelLabel = 'الواجبات';
+
+    protected static ?string $modelLabel = 'واجب';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -61,6 +65,11 @@ class SupervisorAssignmentResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

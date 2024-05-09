@@ -42,8 +42,8 @@
                         <div class="flex items-center justify-end mt-4">
                             @if ($group->total_members >= 4)
                             @else
-                                <button class="btn btn-neutral"
-                                    onclick="my_modal_{{ $group->id }}.showModal()">{{ __('app.join') }}</button>
+                                <x-primary-button class="h-12"
+                                    onclick="my_modal_{{ $group->id }}.showModal()">{{ __('app.join') }}</x-primary-button>
                                 <dialog id="my_modal_{{ $group->id }}" class="modal">
                                     <div class="modal-box">
                                         <h3 class="font-bold text-lg">{{__('app.alert_confirmation')}}!</h3>
@@ -52,8 +52,8 @@
                                             <form method="dialog">
                                                 <!-- if there is a button in form, it will close the modal -->
                                                 <button class="btn">{{ __('app.alert_cancel_button') }}</button>
-                                                <button class="btn btn-success" type="submit"
-                                                    form="join-group-{{ $group->id }}">{{ __('app.join') }}</button>
+                                                <x-primary-button class="h-12" type="submit"
+                                                    form="join-group-{{ $group->id }}">{{ __('app.join') }}</x-primary-button>
                                             </form>
                                         </div>
                                     </div>

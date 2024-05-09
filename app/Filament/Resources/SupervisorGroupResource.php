@@ -18,6 +18,10 @@ class SupervisorGroupResource extends Resource
 {
     protected static ?string $model = Group::class;
 
+    protected static ?string $pluralModelLabel = 'المجموعات';
+
+    protected static ?string $modelLabel = 'مجموعة';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -81,6 +85,11 @@ class SupervisorGroupResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array
