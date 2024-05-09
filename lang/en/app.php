@@ -44,6 +44,11 @@ return [
     'no_groups_available' => 'No Groups Available',
     'create_group' => 'Create Group',
     'browse_groups' => 'Browse Groups',
+    'points' => 'Points',
+    'created_at' => 'Created',
+    'title' => 'Title',
+    'assignment_file_upload' => 'Assignment File',
+    'assignment_note' => 'Notes',
 
     'groups' => 'Groups',
     'new' => 'New',

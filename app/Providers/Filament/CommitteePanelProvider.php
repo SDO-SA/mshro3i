@@ -35,7 +35,7 @@ class CommitteePanelProvider extends PanelProvider
             ->path('committee')
             ->login()
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => '#3f62ba',
             ])
             ->pages([
                 Pages\Dashboard::class,

@@ -15,6 +15,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                royalblue: {
+                100: '#3f62ba',
+                200: '#3858a7',
+                300: '#324e94',
+                400: '#2c4482',
+                },
+            },
         },
     },
 

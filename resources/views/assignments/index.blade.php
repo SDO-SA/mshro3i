@@ -11,9 +11,9 @@
                 <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col">&nbsp;&nbsp;</th>
-                        <th scope="col" class="px-2 py-3">الأسم</th>
-                        <th scope="col" class="px-2 py-3">الدرجات</th>
-                        <th scope="col" class="px-2 py-3">تاريخ الإنشاء</th>
+                        <th scope="col" class="px-2 py-3">{{ __('app.name') }}</th>
+                        <th scope="col" class="px-2 py-3">{{ __('app.points') }}</th>
+                        <th scope="col" class="px-2 py-3">{{ __('app.created_at') }}</th>
                         <th scope="col">&nbsp;&nbsp;</th>
                     </tr>
                 </thead>
