@@ -17,3 +17,25 @@ input[type=number] {
   max-width: 1100px;
   margin: 40px auto;
 }
+#nogroup {
+  height: 650px;
+  width: 650px;
+}
+
+#notingroup {
+  height: 500px;
+  width: 500px;
+}
+
+@media only screen and (max-width: 480px) {
+  /* Smaller size for iPhones */
+  #nogroup {
+    height: 400px;
+    width: 400px;
+  }
+
+  #notingroup {
+    height: 300px;
+    width: 300px;
+  }
+}
