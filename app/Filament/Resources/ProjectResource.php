@@ -32,19 +32,19 @@ class ProjectResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name')->disabled(),
-                TextInput::make('group_name')->label('Group')->disabled()->placeholder(fn (Project $project) => $project->group->name),
-                RichEditor::make('abstract')->columnSpanFull(),
+                TextInput::make('name')->disabled()->label(__('app.name')),
+                TextInput::make('group_name')->label(__('app.group_name'))->disabled()->placeholder(fn (Project $project) => $project->group->name),
+                RichEditor::make('abstract')->columnSpanFull()->label(__('app.abstract')),
                 // FileUpload::make('attachment')
                 //     ->disk('public')
                 //     ->columnSpanFull(),
-                TextInput::make('projectfield')->disabled(),
-                TextInput::make('projecttech')->disabled(),
+                TextInput::make('projectfield')->disabled()->label(__('app.project_field')),
+                TextInput::make('projecttech')->disabled()->label(__('app.project_tech')),
                 Radio::make('status')
-                    ->label('Status')
+                    ->label(__('app.state'))
                     ->options([
-                        'approved' => 'Approve',
-                        'declined' => 'Decline',
+                        'approved' => __('app.confirmed'),
+                        'declined' => __('app.declined'),
                     ])->inline()
                     ->inlineLabel(false)
                     ->required(),
@@ -56,11 +56,13 @@ class ProjectResource extends Resource
         return $table
             ->query(app(ListProjects::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
-                TextColumn::make('status')->badge()
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('group_name')->label(__('app.group_name'))->getStateUsing(fn (Project $project) => $project->group->name),
+                TextColumn::make('status')
+                    ->badge()
+                    ->label(__('app.state'))
                     ->color(fn (string $state): string => match ($state) {
-                        'pending' => 'primary',
+                        'pending' => 'info',
                         'approved' => 'success',
                         'declined' => 'danger',
 
@@ -70,7 +72,7 @@ class ProjectResource extends Resource
                         'approved' => __('app.confirmed'),
                         default => $state,
                     }),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //

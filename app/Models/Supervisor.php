@@ -55,9 +55,9 @@ class Supervisor extends Authenticatable implements FilamentUser
     {
         $type = null;
 
-        if ($this->hasPermissionTo(PermissionsList::SUPERVISOR)) {
-            $type = PermissionsList::SUPERVISOR;
-        }
+        // if ($this->hasPermissionTo(PermissionsList::SUPERVISOR)) {
+        //     $type = PermissionsList::SUPERVISOR;
+        // }
 
         return Attribute::make(
             get: fn () => $type

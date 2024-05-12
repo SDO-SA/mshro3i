@@ -29,12 +29,12 @@ class StudentGroupStateChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'User State',
+                    'label' => 'Group State',
                     'data' => [$newgroup, $pendinggroup, $conifirmedgroup],
                     'backgroundColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
+                        'rgb(162, 195, 219)',
+                        'rgb(220, 177, 45)',
+                        'rgb(138, 175, 34)',
                     ],
                 ],
             ],

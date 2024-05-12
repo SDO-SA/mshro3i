@@ -33,13 +33,13 @@ class ResourceResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name'),
-                FileUpload::make('path'),
+                TextInput::make('name')->label(__('app.name'))->required(),
                 Select::make('department_id')
-                    ->label('Department')
+                    ->label(__('app.department'))
                     ->default($user->department_id)
                     ->options(Department::where('id', $user->department_id)->pluck('name_ar', 'id'))
                     ->required(),
+                FileUpload::make('path')->columnSpanFull()->required()->label(__('app.file')),
             ]);
     }
 
@@ -48,9 +48,8 @@ class ResourceResource extends Resource
         return $table
             ->query(app(ListResources::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('path'),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('name')->label(__('app.name')),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //
