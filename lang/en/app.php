@@ -42,6 +42,8 @@ return [
     'group_state' => 'No Group',
     'no_group' => "You don't have a Group yet!",
     'no_groups_available' => 'No Groups Available',
+    'no_assignments_available' => 'No Assignments Available',
+    'no_resources_available' => 'No Resources Available',
     'create_group' => 'Create Group',
     'browse_groups' => 'Browse Groups',
     'points' => 'Points',

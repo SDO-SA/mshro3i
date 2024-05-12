@@ -20,7 +20,7 @@
                     {{ __('app.dashboard') }}
                     </x-nav-link>
                 </div>
-                @if ($supervisor != null)
+                {{-- @if ($supervisor != null) --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
                         {{ __('app.assignments') }}
@@ -36,7 +36,7 @@
                         {{ __('app.calendar') }}
                         </x-nav-link>
                     </div>
-                @endif
+                {{-- @endif --}}
             </div>
 
             <!-- Settings Dropdown -->
@@ -101,7 +101,7 @@
                 {{ __('app.dashboard') }}
             </x-responsive-nav-link>
 
-            @if ($supervisor != null)
+            {{-- @if ($supervisor != null) --}}
                 <x-responsive-nav-link :href="route('assignments.index')" :active="request()->routeIs('assignments.index')">
                     {{ __('app.assignments') }}
                 </x-responsive-nav-link>
@@ -113,7 +113,7 @@
                 <x-responsive-nav-link :href="route('components.calendar')" :active="request()->routeIs('components.calendar')">
                     {{ __('app.calendar') }}
                 </x-responsive-nav-link>
-            @endif
+            {{-- @endif --}}
         </div>
 
         <!-- Responsive Settings Options -->

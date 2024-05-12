@@ -28,9 +28,9 @@ class SupervisorsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('university_id')->numeric()->unique(ignoreRecord: true),
-                TextInput::make('email')->unique(ignoreRecord: true),
+                TextInput::make('name')->label(__('app.name')),
+                TextInput::make('university_id')->numeric()->unique(ignoreRecord: true)->label(__('app.uni_id')),
+                TextInput::make('email')->unique(ignoreRecord: true)->label(__('app.email')),
             ]);
     }
 
@@ -39,10 +39,10 @@ class SupervisorsResource extends Resource
         return $table
             ->query(app(ListSupervisors::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('email')->sortable(),
-                TextColumn::make('university_id')->sortable(),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('email')->sortable()->label(__('app.email')),
+                TextColumn::make('university_id')->sortable()->label(__('app.uni_id')),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //

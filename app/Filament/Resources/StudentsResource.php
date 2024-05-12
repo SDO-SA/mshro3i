@@ -34,16 +34,17 @@ class StudentsResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name')->disabled(),
-                TextInput::make('university_id')->disabled(),
-                TextInput::make('group_name')->label('Group')->disabled()->placeholder(fn (User $user) => $user->group->name ?? ''),
-                TextInput::make('email')->disabled(),
+                TextInput::make('name')->disabled()->label(__('app.name')),
+                TextInput::make('university_id')->disabled()->label(__('app.uni_id')),
+                TextInput::make('group_name')->label(__('app.group_name'))->disabled()->placeholder(fn (User $user) => $user->group->name ?? ''),
+                TextInput::make('email')->disabled()->label(__('app.email')),
                 Select::make('group_id')
-                    ->label('Assign Group')
+                    ->label(__('app.assign_group'))
                     ->options(Group::where('department_id', $user->department_id)->pluck('name', 'id'))
                     ->searchable()
                     ->required(),
                 Radio::make('state')
+                    ->label(__('app.state'))
                     ->options([
                         'group_member' => __('app.filament_groupmember'),
                         'group_leader' => __('app.filament_groupleader'),
@@ -60,24 +61,24 @@ class StudentsResource extends Resource
         return $table
             ->query(app(ListStudents::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('email')->sortable(),
-                TextColumn::make('university_id')->sortable(),
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('email')->sortable()->label(__('app.email')),
+                TextColumn::make('university_id')->sortable()->label(__('app.uni_id')),
                 TextColumn::make('state')->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'not_joined' => 'info',
                         'group_member' => 'success',
-                        'group_leader' => 'primary',
+                        'group_leader' => 'warning',
 
                     })->sortable()
-                    ->label('State') // Add a custom label for clarity
+                    ->label(__('app.state'))
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'not_joined' => __('app.filament_notjoined'),
                         'group_member' => __('app.filament_groupmember'),
                         'group_leader' => __('app.filament_groupleader'),
                         default => $state,
                     }),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 SelectFilter::make('state')

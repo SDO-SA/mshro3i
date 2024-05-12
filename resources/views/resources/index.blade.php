@@ -4,6 +4,12 @@
         {{ __('app.resources') }}
         </h2>
     </x-slot>
+    @if (count($resources) <= 0)
+            <div class="flex flex-col items-center justify-center h-auto">
+                <img src="{{ asset('img/File-searching.svg') }}" alt="" class="lg:w-[500px] lg:h-[500px] sm:w-[250px] sm:h-[250px]">
+                <h1 class="font-semibold text-2xl text-gray-800 sm:text-4xl dark:text-gray-200 leading-tight">{{__('app.no_resources_available')}}</h1>
+            </div>
+    @else
     <div class='mt-7 flex justify-center items-center'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-[80rem]">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -28,4 +34,5 @@
             </table>
         </div>
     </div>
+    @endif
 </x-app-layout>

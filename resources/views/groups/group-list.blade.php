@@ -5,12 +5,10 @@
         </h2>
     </x-slot>
     @if (count($groups) <= 0)
-        <div class="flex items-center justify-center h-96 mt-44">
-            <div class="flex flex-col items-center justify-center">
-                <img src="{{ asset('img/nogroups.svg') }}" alt="" id="nogroup">
+            <div class="flex flex-col items-center justify-center ">
+                <img src="{{ asset('img/nogroups.svg') }}" alt="" class="lg:w-[650px] lg:h-[650px] sm:w-[400px] sm:h-[400px]">
                 <h1 class="font-semibold text-2xl text-gray-800 sm:text-4xl dark:text-gray-200 leading-tight">{{__('app.no_groups_available')}}</h1>
             </div>
-        </div>
     @else
         <div class="max-w-7xl mt-4 mx-auto sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1">
