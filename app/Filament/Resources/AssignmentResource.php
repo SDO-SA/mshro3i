@@ -34,15 +34,16 @@ class AssignmentResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('points'),
-                RichEditor::make('deliverables')->columnSpanFull()->required(),
+                TextInput::make('name')->label(__('app.name')),
+                TextInput::make('points')->label(__('app.points')),
+                RichEditor::make('deliverables')->columnSpanFull()->required()->label(__('app.deliverables')),
                 DateTimePicker::make('due_date')
+                    ->label(__('app.due_date'))
                     ->suffix('End Date')
                     ->seconds(false)
                     ->required(),
                 Select::make('department_id')
-                    ->label('Department')
+                    ->label(__('app.department'))
                     ->default($user->department_id)
                     ->options(Department::where('id', $user->department_id)->pluck('name_ar', 'id'))
                     ->required(),
@@ -54,9 +55,9 @@ class AssignmentResource extends Resource
         return $table
             ->query(app(ListAssignments::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('points')->sortable(),
-                TextColumn::make('due_date')->sortable(),
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('points')->sortable()->label(__('app.points')),
+                TextColumn::make('due_date')->sortable()->label(__('app.due_date')),
             ])
             ->filters([
                 //

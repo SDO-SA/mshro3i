@@ -19,17 +19,24 @@
                 <div class="absolute inset-x-0 -top-8 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
                     <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#8fff80] to-[#89effc] opacity-50 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
                 </div>
-                <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                    <div class="flex justify-center mb-5">
-                        <x-application-logo class="h-32"/>
-                    </div>
-                    <div class="text-center">
-                      <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">منصتنا ليست فقط منصة</h1>
-                      <p class="mt-6 text-lg leading-8 text-gray-600">تنظيم وادارة مشروع تخرجك صار ولا أسهل باستخدام منصتنا</p>
-                      <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="{{ route('login') }}" class="text-sm font-semibold leading-6 text-gray-900">سجل دخول</a>
-                        <a href="{{ route('register') }}" class="rounded-md bg-royalblue-100 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-royalblue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royalblue-100">سجل معانا <span aria-hidden="true">→</span></a>
-                      </div>
+                <div class="flex justify-center">
+                    <div class="grid lg:grid-cols-2 sm:grid-cols-1 size-fit">
+                        <div class="flex flex-col justify-center">
+                            <div class="flex justify-end mb-5"> 
+                                <x-application-logo class="h-32"/>
+                            </div>
+                            <div class="text-right">
+                                <h1 class="text-4xl sm:text-7xl font-bold tracking-tight text-gray-900">منصتنا ليست فقط منصة</h1>
+                                <p class="mt-6 text-2xl leading-8 text-gray-600">تنظيم وادارة مشروع تخرجك صار ولا أسهل باستخدام منصتنا</p>
+                                    <div class="mt-10 flex items-center justify-end gap-x-6">
+                                        <a href="{{ route('login') }}" class="text-sm font-semibold leading-6 text-gray-900">سجل دخول</a>
+                                        <a href="{{ route('register') }}" class="rounded-md bg-royalblue-100 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-royalblue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royalblue-100">سجل معانا <span aria-hidden="true">→</span></a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <img src="{{ asset('img/college-project.svg') }}" alt="" class="lg:w-[1280px] lg:h-[1000px] sm:w-auto sm:h-auto">
+                        </div>   
                     </div>
                 </div>
                 <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-40rem)]" aria-hidden="true">

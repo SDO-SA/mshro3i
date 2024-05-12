@@ -33,11 +33,11 @@ class AnnouncementResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('header')->required(),
-                TextInput::make('brief')->required(),
-                RichEditor::make('message')->columnSpanFull()->required(),
+                TextInput::make('header')->required()->label(__('app.header')),
+                TextInput::make('brief')->required()->label(__('app.brief')),
+                RichEditor::make('message')->columnSpanFull()->required()->label(__('app.message')),
                 Select::make('department_id')
-                    ->label('Department')
+                    ->label(__('app.department'))
                     ->default($user->department_id)
                     ->options(Department::where('id', $user->department_id)->pluck('name_ar', 'id'))
                     ->required(),
@@ -49,9 +49,9 @@ class AnnouncementResource extends Resource
         return $table
             ->query(app(ListAnnouncements::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('header'),
-                TextColumn::make('message')->limit(15),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('header')->label(__('app.header')),
+                TextColumn::make('brief')->limit(15)->label(__('app.brief')),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //
