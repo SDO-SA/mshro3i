@@ -13,7 +13,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Alexandria', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 royalblue: {

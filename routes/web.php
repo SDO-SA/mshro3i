@@ -30,6 +30,21 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/portal', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    } else {
+        return view('portal');
+    }
+})->name('portal');
+
+Route::get('/committeeportal', function () {
+    return redirect('/committee');
+})->name('committeeportal');
+Route::get('/supervisorportal', function () {
+    return redirect('/supervisor');
+})->name('supervisorportal');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
