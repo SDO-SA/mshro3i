@@ -27,6 +27,11 @@ return [
 
     'password_reset' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
     'password_link' => 'EMAIL PASSWORD RESET LINK',
+    'update_password' => 'Update Password',
+    'update_password_message' => 'Ensure your account is using a long, random password to stay secure.',
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'save' => 'Save',
 
     'dashboard' => 'Dashboard',
     'assignments' => 'Assignments',
