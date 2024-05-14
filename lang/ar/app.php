@@ -87,6 +87,8 @@ return [
     'project_field' => 'مجالات المشروع',
     'project_tech' => 'التقنيات المستعملة',
     'project_proposal' => 'إرفع مقترح المشروع',
+    'project_feedback' => 'اسباب الرفض',
+    'project_update' => 'تعديل المشروع',
 
     'create' => 'انشاء',
     'cancel' => 'تراجع',

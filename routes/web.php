@@ -96,6 +96,8 @@ Route::prefix('project')
     ->group(function () {
         Route::get('/create-project', [ProjectController::class, 'createForm'])->name('createproject');
         Route::post('/create-project', [ProjectController::class, 'createProject']);
+        Route::get('/update-project/{project_id}', [ProjectController::class, 'updateForm']);
+        Route::post('/update-project/{project_id}', [ProjectController::class, 'updateproject'])->name('updateproject');
     });
 
 require __DIR__.'/auth.php';

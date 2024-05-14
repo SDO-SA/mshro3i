@@ -28,4 +28,12 @@ class ProjectPolicy
 
         return $isStudent && ($isGroupLeader || $isGroupMember);
     }
+
+    public function canUpdateProjectInfo(User $user): bool
+    {
+        $isStudent = $user->hasRole(RolesList::ROLE_STUDENT);
+        $isGroupLeader = $user->state === StudentStates::GroupLeader()->value;
+
+        return $isStudent && $isGroupLeader;
+    }
 }

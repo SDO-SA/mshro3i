@@ -8,6 +8,7 @@ use App\Models\Project;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -40,6 +41,7 @@ class ProjectResource extends Resource
                 //     ->columnSpanFull(),
                 TextInput::make('projectfield')->disabled()->label(__('app.project_field')),
                 TextInput::make('projecttech')->disabled()->label(__('app.project_tech')),
+
                 Radio::make('status')
                     ->label(__('app.state'))
                     ->options([
@@ -47,7 +49,8 @@ class ProjectResource extends Resource
                         'declined' => __('app.declined'),
                     ])->inline()
                     ->inlineLabel(false)
-                    ->required(),
+                    ->required()->columnSpanFull(),
+                Textarea::make('feedback')->label(__('app.project_feedback')),
             ]);
     }
 
