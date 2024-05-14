@@ -18,9 +18,12 @@
                     themeSystem: 'bootstrap5',
                     initialView: 'dayGridMonth',
                     headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                        left: 'title',
+                        center: '',
+                        right: 'prev,next'
+                    },
+                    footerToolbar: {
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                     },
                     events: @json($events),
                 });

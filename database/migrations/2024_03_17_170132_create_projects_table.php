@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('projectfield');
             $table->text('projecttech');
             $table->string('attachment');
+            $table->string('feedback')->nullable();
             $table->string('status');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');

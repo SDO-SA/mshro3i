@@ -17,6 +17,7 @@ class Project extends Model
         'group_id',
         'abstract',
         'projectfield',
+        'feedback',
         'projecttech',
         'attachment',
         'status',

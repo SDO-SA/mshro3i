@@ -31,6 +31,7 @@ return [
     'regex' => 'تنسيق حقل :attribute غير صالح.',
     'required' => 'حقل :attribute مطلوب.',
     'confirmed' => 'تأكيد حقل :attribute لا يتطابق.',
+    'unique' => ':attribute موجود بالفعل.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
