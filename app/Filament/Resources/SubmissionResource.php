@@ -22,7 +22,7 @@ class SubmissionResource extends Resource
 
     protected static ?string $modelLabel = 'تسليم';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     protected static ?string $navigationGroup = 'المعطيات';
 

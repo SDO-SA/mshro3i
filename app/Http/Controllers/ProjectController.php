@@ -8,12 +8,15 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    // Create and show Project Form
     public function createForm()
     {
         $this->authorize('canCreateProjectProposal', Project::class);
 
         return view('projects.project-form');
     }
+
+    // Create Project and store it in Database
 
     public function createProject(Request $request)
     {
@@ -50,6 +53,8 @@ class ProjectController extends Controller
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 
+    // Create and show Project Update Form
+
     public function updateForm($project_id)
     {
         $this->authorize('canUpdateProjectInfo', Project::class);
@@ -57,6 +62,8 @@ class ProjectController extends Controller
 
         return view('projects.update-project', compact('project'));
     }
+
+    // Update Project Function
 
     public function updateproject(Request $request, $project_id)
     {

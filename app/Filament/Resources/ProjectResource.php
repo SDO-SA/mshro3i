@@ -24,7 +24,7 @@ class ProjectResource extends Resource
 
     protected static ?string $modelLabel = 'مشروع';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationGroup = 'إدارة';
 
@@ -65,7 +65,7 @@ class ProjectResource extends Resource
                     ->badge()
                     ->label(__('app.state'))
                     ->color(fn (string $state): string => match ($state) {
-                        'pending' => 'info',
+                        'pending' => 'warning',
                         'approved' => 'success',
                         'declined' => 'danger',
 

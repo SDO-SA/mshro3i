@@ -13,7 +13,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -32,7 +31,7 @@ class SupervisorPanelProvider extends PanelProvider
             ->login()
             ->registration(SupervisorRegister::class)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#3f62ba',
             ])
 
             ->pages([
@@ -41,8 +40,8 @@ class SupervisorPanelProvider extends PanelProvider
             ->resources([
                 SupervisorGroupResource::class,
                 SupervisorProjectResource::class,
-                SupervisorSubmissionResource::class,
                 SupervisorAssignmentResource::class,
+                SupervisorSubmissionResource::class,
 
             ])
             ->discoverWidgets(in: app_path('Filament/Supervisor/Widgets'), for: 'App\\Filament\\Supervisor\\Widgets')

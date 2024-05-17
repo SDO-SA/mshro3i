@@ -24,7 +24,7 @@ class AssignmentResource extends Resource
 
     protected static ?string $modelLabel = 'واجب';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
     protected static ?string $navigationGroup = 'المعطيات';
 

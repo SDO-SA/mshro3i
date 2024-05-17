@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
+
+    // Create and show Submission Form
     public function form($assignment_id)
     {
         $assignment = Assignment::find($assignment_id);
@@ -16,6 +18,7 @@ class SubmissionController extends Controller
         return view('assignments.submit-form', compact('assignment'));
     }
 
+    // Create Submission and store it in Database
     public function submit(Request $request, $assignment_id)
     {
         $this->authorize('canSubmitAssignment', Submission::class);

@@ -22,11 +22,12 @@ class SupervisorGroupResource extends Resource
 
     protected static ?string $modelLabel = 'مجموعة';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'الإدارة';
+
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
-        $user = auth()->user();
         $group = $form->getModelInstance();
         $supervisorname = optional(Supervisor::find($group->supervisor_id))->name ?? '';
         $groupUsers = User::where('group_id', $group->id)->get();
@@ -35,12 +36,10 @@ class SupervisorGroupResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name')->disabled(),
-                TextInput::make('supervisors')->disabled(),
-                TextInput::make('total_members')->disabled(),
-                TextInput::make('supervisor_name')->label('Supervisor')->disabled()->placeholder($supervisorname),
-                TextInput::make('group_leader')->label('Leader')->disabled()->placeholder($groupLeader->name),
-                TextInput::make('group_members')->label('Members')->disabled()->placeholder(implode(', ', $groupMembers)),
+                TextInput::make('name')->disabled()->label(__('app.group_name')),
+                TextInput::make('group_leader')->label(__('app.group_leader'))->disabled()->placeholder($groupLeader->name),
+                TextInput::make('supervisor_name')->label(__('app.supervisor'))->disabled()->placeholder($supervisorname),
+                TextInput::make('group_members')->label(__('app.group_members'))->disabled()->placeholder(implode(' - ', $groupMembers)),
             ]);
     }
 
@@ -49,23 +48,24 @@ class SupervisorGroupResource extends Resource
         return $table
             ->query(app(ListSupervisorGroups::class)->supervisorIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('total_members')->sortable(),
-                TextColumn::make('status')->badge()
+                TextColumn::make('name')->sortable()->label(__('app.group_name')),
+                TextColumn::make('total_members')->sortable()->label(__('app.total_members')),
+                TextColumn::make('status')
+                    ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'new' => 'info',
-                        'pending' => 'primary',
+                        'pending' => 'warning',
                         'confirmed' => 'success',
 
                     })->sortable()
-                    ->label('Status') // Add a custom label for clarity
+                    ->label(__('app.state'))
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'new' => __('app.new'),
                         'pending' => __('app.pending'),
                         'confirmed' => __('app.confirmed'),
                         default => $state,
                     }),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //
