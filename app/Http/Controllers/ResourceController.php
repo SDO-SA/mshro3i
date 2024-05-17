@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ResourceController extends Controller
 {
+
+    // Show list of Resources
     public function index()
     {
         $user = auth()->user();
@@ -15,6 +17,7 @@ class ResourceController extends Controller
         return view('resources.index', compact('resources'));
     }
 
+    // Show Resource
     public function show($resource_id)
     {
         $resource = Resource::findOrFail($resource_id);

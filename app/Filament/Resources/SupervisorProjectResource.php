@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SupervisorProjectResource\Pages;
 use App\Filament\Resources\SupervisorProjectResource\Pages\ListSupervisorProjects;
 use App\Models\Project;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,13 +21,19 @@ class SupervisorProjectResource extends Resource
 
     protected static ?string $modelLabel = 'مشروع';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'الإدارة';
+
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')->disabled()->label(__('app.name')),
+                TextInput::make('group_name')->label(__('app.group_name'))->disabled()->placeholder(fn (Project $project) => $project->group->name),
+                Textarea::make('abstract')->columnSpanFull()->disabled()->label(__('app.abstract')),
+                TextInput::make('projectfield')->disabled()->label(__('app.project_field')),
+                TextInput::make('projecttech')->disabled()->label(__('app.project_tech')),
             ]);
     }
 
@@ -34,11 +42,13 @@ class SupervisorProjectResource extends Resource
         return $table
             ->query(app(ListSupervisorProjects::class)->supervisorIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('group_name')->label('Group')->getStateUsing(fn (Project $project) => $project->group->name),
-                TextColumn::make('status')->badge()
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('group_name')->label(__('app.group_name'))->getStateUsing(fn (Project $project) => $project->group->name),
+                TextColumn::make('status')
+                    ->badge()
+                    ->label(__('app.state'))
                     ->color(fn (string $state): string => match ($state) {
-                        'pending' => 'primary',
+                        'pending' => 'warning',
                         'approved' => 'success',
                         'declined' => 'danger',
 
@@ -48,7 +58,7 @@ class SupervisorProjectResource extends Resource
                         'approved' => __('app.confirmed'),
                         default => $state,
                     }),
-                TextColumn::make('created_at')->label('Created At')->since(),
+                TextColumn::make('created_at')->label(__('app.created_at'))->since(),
             ])
             ->filters([
                 //

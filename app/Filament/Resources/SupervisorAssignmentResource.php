@@ -6,7 +6,7 @@ use App\Filament\Resources\SupervisorAssignmentResource\Pages;
 use App\Filament\Resources\SupervisorAssignmentResource\Pages\ListSupervisorAssignments;
 use App\Models\Assignment;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -22,16 +22,19 @@ class SupervisorAssignmentResource extends Resource
 
     protected static ?string $modelLabel = 'واجب';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'المعطيات';
+
+    protected static ?string $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->disabled(),
-                TextInput::make('points')->disabled(),
-                RichEditor::make('deliverables')->columnSpanFull()->disabled(),
+                TextInput::make('name')->disabled()->label(__('app.name')),
+                TextInput::make('points')->disabled()->label(__('app.points')),
+                Textarea::make('deliverables')->disabled()->columnSpanFull()->label(__('app.deliverables')),
                 DateTimePicker::make('due_date')
+                    ->label(__('app.due_date'))
                     ->suffix('End Date')
                     ->seconds(false)
                     ->disabled(),
@@ -43,9 +46,9 @@ class SupervisorAssignmentResource extends Resource
         return $table
             ->query(app(ListSupervisorAssignments::class)->departmentIdQuery())
             ->columns([
-                TextColumn::make('name')->sortable(),
-                TextColumn::make('points')->sortable(),
-                TextColumn::make('due_date')->sortable(),
+                TextColumn::make('name')->sortable()->label(__('app.name')),
+                TextColumn::make('points')->sortable()->label(__('app.points')),
+                TextColumn::make('due_date')->sortable()->label(__('app.due_date')),
             ])
             ->filters([
                 //
