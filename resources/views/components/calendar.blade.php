@@ -18,14 +18,16 @@
                     themeSystem: 'bootstrap5',
                     initialView: 'dayGridMonth',
                     headerToolbar: {
-                        left: 'title',
+                        left: 'next,prev',
                         center: '',
-                        right: 'prev,next'
+                        right: 'title'
                     },
                     footerToolbar: {
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                     },
                     events: @json($events),
+                    direction: 'rtl',
+                    locale: 'ar'
                 });
                 calendar.render();
             });
