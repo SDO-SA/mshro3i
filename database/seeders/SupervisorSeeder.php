@@ -21,7 +21,7 @@ class SupervisorSeeder extends Seeder
             'name' => 'مشعل القرني',
             'email' => 'supervisor@example.com',
             'university_id' => 442003532,
-            'department_id' => Department::query()->get()->random()->id,
+            'department_id' => 1,
             'password' => Hash::make(111),
         ]);
 

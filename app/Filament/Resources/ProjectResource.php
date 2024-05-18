@@ -12,9 +12,11 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectResource extends Resource
 {
@@ -73,6 +75,7 @@ class ProjectResource extends Resource
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'pending' => __('app.pending'),
                         'approved' => __('app.confirmed'),
+                        'declined' => __('app.declined'),
                         default => $state,
                     }),
                 TextColumn::make('created_at')->label(__('app.created_at'))->since(),
@@ -81,6 +84,10 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('View File')->url(function (Project $record) {
+                    return Storage::url($record->attachment);
+                }, true)->icon('heroicon-o-magnifying-glass')->label('عرض الملف')
+                    ->color(Color::Green),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

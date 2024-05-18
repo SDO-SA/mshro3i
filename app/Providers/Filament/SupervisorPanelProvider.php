@@ -7,6 +7,9 @@ use App\Filament\Resources\SupervisorAssignmentResource;
 use App\Filament\Resources\SupervisorGroupResource;
 use App\Filament\Resources\SupervisorProjectResource;
 use App\Filament\Resources\SupervisorSubmissionResource;
+use App\Filament\Supervisor\Widgets\ProjectState;
+use App\Filament\Supervisor\Widgets\SubmissionState;
+use App\Filament\Supervisor\Widgets\SupervisorStats;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -44,9 +47,10 @@ class SupervisorPanelProvider extends PanelProvider
                 SupervisorSubmissionResource::class,
 
             ])
-            ->discoverWidgets(in: app_path('Filament/Supervisor/Widgets'), for: 'App\\Filament\\Supervisor\\Widgets')
             ->widgets([
-
+                SupervisorStats::class,
+                ProjectState::class,
+                SubmissionState::class,
             ])
             ->middleware([
                 EncryptCookies::class,

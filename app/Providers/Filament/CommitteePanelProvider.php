@@ -10,6 +10,9 @@ use App\Filament\Resources\ResourceResource;
 use App\Filament\Resources\StudentsResource;
 use App\Filament\Resources\SubmissionResource;
 use App\Filament\Resources\SupervisorsResource;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\StudentGroupStateChart;
+use App\Filament\Widgets\UserStateChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -49,9 +52,10 @@ class CommitteePanelProvider extends PanelProvider
                 SupervisorsResource::class,
                 StudentsResource::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-
+                StatsOverview::class,
+                StudentGroupStateChart::class,
+                UserStateChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,

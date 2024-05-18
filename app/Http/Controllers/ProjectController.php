@@ -29,7 +29,7 @@ class ProjectController extends Controller
             'projectfield' => 'required|array',
             'projectfield.*' => 'string',
             'projecttech' => 'required|string|max:255',
-            'attachment' => 'required|file|mimes:pdf|max:10240',
+            'attachment' => 'required|file|mimes:pdf|max:102400',
         ]);
 
         $attachmentPath = $request->file('attachment')->store('public');

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ResourceController extends Controller
 {
-
     // Show list of Resources
     public function index()
     {
