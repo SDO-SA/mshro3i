@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-
     // Create and show Submission Form
     public function form($assignment_id)
     {

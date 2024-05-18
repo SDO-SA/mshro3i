@@ -10,9 +10,11 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class SupervisorSubmissionResource extends Resource
 {
@@ -68,6 +70,7 @@ class SupervisorSubmissionResource extends Resource
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'pending' => __('app.pending'),
                         'approved' => __('app.confirmed'),
+                        'declined' => __('app.declined'),
                         default => $state,
                     }),
             ])
@@ -75,6 +78,10 @@ class SupervisorSubmissionResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('View File')->url(function (Submission $record) {
+                    return Storage::url($record->attachment);
+                }, true)->icon('heroicon-o-magnifying-glass')->label('عرض التسليم')
+                    ->color(Color::Green),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
