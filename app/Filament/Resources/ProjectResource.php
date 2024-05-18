@@ -63,6 +63,7 @@ class ProjectResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->label(__('app.name')),
                 TextColumn::make('group_name')->label(__('app.group_name'))->getStateUsing(fn (Project $project) => $project->group->name),
+                TextColumn::make('supervisor')->label(__('app.supervisor'))->getStateUsing(fn (Project $project) => $project->supervisor->name),
                 TextColumn::make('status')
                     ->badge()
                     ->label(__('app.state'))
